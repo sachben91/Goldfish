@@ -8,6 +8,7 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
   const [step, setStep] = useState<"phone" | "otp">("phone");
   const [loading, setLoading] = useState(false);
@@ -110,7 +111,7 @@ export default function LoginPage() {
             </div>
             <button
               type="button"
-              onClick={signInAsDemo}
+              onClick={signInWithEmail}
               disabled={loading}
               className="w-full bg-slate-100 text-slate-700 py-3 rounded-lg text-base font-medium disabled:opacity-50"
             >
