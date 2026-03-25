@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "eslint",
     "seed": "ts-node --project tsconfig.seed.json scripts/seed.ts",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test": "vitest run"
   },
   "dependencies": {
     "@base-ui/react": "^1.3.0",
@@ -38,6 +39,7 @@
     "tailwindcss": "^4",
     "ts-node": "^10.9.2",
     "typescript": "^5",
-    "vercel": "^50.37.0"
+    "vercel": "^50.37.0",
+    "vitest": "^4.1.1"
   }
 }

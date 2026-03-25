@@ -34,7 +34,7 @@ export default async function SchedulePage() {
       customer:customers(id, customer_id, customer_name, city, segment_hint, access_notes, customer_type),
       technician:technicians(id, name)
     `)
-    .eq("status", "scheduled")
+    .in("status", ["scheduled", "completed"])
     .gte("scheduled_date", today)
     .lte("scheduled_date", oneWeekOut)
     .order("scheduled_date", { ascending: true });
@@ -47,12 +47,17 @@ export default async function SchedulePage() {
   const todayVisits = (visits ?? []).filter((v) => v.scheduled_date === today) as ScheduledVisit[];
   const upcomingVisits = (visits ?? []).filter((v) => v.scheduled_date !== today) as ScheduledVisit[];
 
-  // Emergency rescues always appear first
+  // Emergency rescues first, then by city. Completed visits always last.
   const sortByUrgency = (a: ScheduledVisit, b: ScheduledVisit) => {
+    if (a.status === "completed" && b.status !== "completed") return 1;
+    if (b.status === "completed" && a.status !== "completed") return -1;
     if (a.service_type === "emergency_rescue") return -1;
     if (b.service_type === "emergency_rescue") return 1;
     return a.customer.city?.localeCompare(b.customer.city ?? "") ?? 0;
   };
+
+  const pendingToday = todayVisits.filter((v) => v.status === "scheduled");
+  const completedToday = todayVisits.filter((v) => v.status === "completed");
 
   return (
     <div className="max-w-lg mx-auto px-4 pb-24">
@@ -67,21 +72,37 @@ export default async function SchedulePage() {
         </h1>
       </div>
 
-      {/* Today */}
+      {/* Today — pending */}
       <section>
         <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
-          Today — {todayVisits.length} {todayVisits.length === 1 ? "visit" : "visits"}
+          Today — {pendingToday.length} remaining
         </h2>
-        {todayVisits.length === 0 ? (
-          <p className="text-slate-500 text-sm py-4">No visits scheduled for today.</p>
+        {pendingToday.length === 0 ? (
+          <p className="text-slate-500 text-sm py-4">
+            {completedToday.length > 0 ? "All done for today." : "No visits scheduled for today."}
+          </p>
         ) : (
           <div className="space-y-3">
-            {[...todayVisits].sort(sortByUrgency).map((visit) => (
+            {[...pendingToday].sort(sortByUrgency).map((visit) => (
               <VisitCard key={visit.id} visit={visit} />
             ))}
           </div>
         )}
       </section>
+
+      {/* Today — completed */}
+      {completedToday.length > 0 && (
+        <section className="mt-6">
+          <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">
+            Logged today
+          </h2>
+          <div className="space-y-3">
+            {completedToday.map((visit) => (
+              <VisitCard key={visit.id} visit={visit} />
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* This week */}
       {upcomingVisits.length > 0 && (

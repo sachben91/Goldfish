@@ -140,11 +140,19 @@ export default async function BriefPage({ params }: BriefPageProps) {
 
       {/* Fixed bottom action bar */}
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 px-4 py-4">
-        <Link href={`/visit/${visitId}/log`}>
-          <button className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold text-base">
-            Log this visit
-          </button>
-        </Link>
+        {scheduledVisit.status === "completed" ? (
+          <Link href={`/visit/${visitId}/log`}>
+            <button className="w-full bg-green-600 text-white py-3.5 rounded-xl font-semibold text-base">
+              ✓ Visit logged — view notes
+            </button>
+          </Link>
+        ) : (
+          <Link href={`/visit/${visitId}/log`}>
+            <button className="w-full bg-blue-600 text-white py-3.5 rounded-xl font-semibold text-base">
+              Log this visit
+            </button>
+          </Link>
+        )}
       </div>
 
     </div>
