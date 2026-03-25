@@ -7,7 +7,7 @@
 export const dynamic = "force-dynamic";
 
 import { createClient } from "@/lib/supabase/server";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 import { AccountSnapshot } from "@/components/brief/AccountSnapshot";
 import { LastVisitSummary } from "@/components/brief/LastVisitSummary";
@@ -26,8 +26,7 @@ export default async function BriefPage({ params }: BriefPageProps) {
   const { visitId } = await params;
   const supabase = await createClient();
 
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
+  // Auth disabled for testing
 
   // Fetch the scheduled visit with customer info
   const { data: scheduledVisit } = await supabase
