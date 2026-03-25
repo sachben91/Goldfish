@@ -48,11 +48,12 @@ export default async function BriefPage({ params }: BriefPageProps) {
     { data: recentOrders },
     { data: catalogItems },
   ] = await Promise.all([
-    // Last 5 visits for this account, most recent first
+    // Last 5 visits for this account, most recent first (past visits only)
     supabase
       .from("service_visits")
       .select("*, technician:technicians(name)")
       .eq("customer_id", customerId)
+      .lte("service_date", new Date().toISOString().split("T")[0])
       .order("service_date", { ascending: false })
       .limit(5),
 
