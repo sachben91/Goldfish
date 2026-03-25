@@ -1,0 +1,33 @@
+sku,product_name,category,buyer_type_hint,tank_size_min_gallons,temperature_sensitivity,compatibility_group,seasonality_flags,delivery_sensitivity,service_dependency,upsell_relationships
+FISH-CLN-001,Ocellaris Clown Pair,fish,beginner-reef,20,medium,reef-safe-community,none,medium,low,CORL-ZOA-001|INVT-SHR-001
+FISH-TRG-001,Bluejaw Trigger Juvenile,fish,advanced-showpiece,180,medium,aggressive-non-reef,none,high,manual-review,EQUIP-QTN-001|EQUIP-ALR-001
+FISH-WRS-001,Six-Line Wrasse,fish,pest-control-reef,30,medium,semi-aggressive-reef,none,medium,low,INVT-SHR-001|CORL-MSH-001
+FISH-TNG-001,Yellow Tang,fish,display-reef,75,medium,reef-safe-herbivore,none,high,medium,EQUIP-ATO-001|EQUIP-NOR-001
+FISH-GRM-001,Royal Gramma,fish,reef-starter,30,low,reef-safe-community,none,medium,low,CORL-ZOA-001|INVT-SNA-001
+FISH-FOX-001,One Spot Foxface,fish,algae-control-showpiece,90,medium,reef-safe-herbivore,none,high,medium,EQUIP-NOR-001
+FISH-CRD-001,Banggai Cardinal Pair,fish,office-stable,30,low,reef-safe-community,none,medium,low,CORL-MSH-001|INVT-SNA-001
+FISH-HWK-001,Flame Hawkfish,fish,showpiece-predator,40,medium,semi-aggressive-predator,none,high,manual-review,EQUIP-QTN-001
+FISH-GBY-001,Watchman Goby Pair,fish,reef-bottom-dweller,25,low,reef-safe-community,none,medium,low,INVT-SHR-002
+FISH-DOT-001,Orchid Dottyback,fish,reef-color-pop,30,low,semi-aggressive-reef,none,medium,low,CORL-HMR-001
+CORL-ZOA-001,Zoa Garden Frag,coral,entry-reef,20,high,soft-coral,avoid-extreme-temp,high,low,EQUIP-ALR-001|INVT-SHR-001
+CORL-HMR-001,Hammer Coral Branch,coral,mixed-reef,40,high,lps,avoid-extreme-temp,high,medium,EQUIP-DOS-001
+CORL-TOR-001,Torch Coral Head,coral,collector-reef,50,high,lps-aggressive,avoid-extreme-temp,high,medium,EQUIP-DOS-001
+CORL-MSH-001,Mushroom Coral Pack,coral,forgiving-reef,20,medium,soft-coral,none,medium,low,FISH-CLN-001
+CORL-ANO-001,Bubble Tip Anemone,coral,mature-reef,40,high,anemone,avoid-extreme-temp,high,manual-review,FISH-CLN-001|EQUIP-ALR-001
+CORL-MNT-001,Monti Cap Frag,coral,sps-step-up,45,high,sps,avoid-extreme-temp,high,medium,EQUIP-DOS-001
+INVT-SHR-001,Cleaner Shrimp,invertebrate,reef-cleanup,20,medium,reef-invert,none,high,low,CORL-ZOA-001
+INVT-SHR-002,Peppermint Shrimp,invertebrate,aptasia-control,20,medium,reef-invert,none,high,low,FISH-GBY-001
+INVT-SHR-003,Fire Shrimp,invertebrate,collector-invert,30,medium,reef-invert,none,high,low,CORL-HMR-001
+INVT-SNA-001,Trochus Snail Pack,invertebrate,cleanup-crew,10,low,cleanup-crew,none,medium,low,CORL-ZOA-001
+INVT-CRB-001,Emerald Crab,invertebrate,algae-control,20,medium,reef-invert,none,medium,low,INVT-SNA-001
+BNDL-CLN-001,Beginner Reef Starter Bundle,bundle,starter-reef,20,medium,starter-bundle,none,high,medium,SERV-CNS-001|EQUIP-ATO-001
+BNDL-CLR-001,Cleanup Crew Refresh Bundle,bundle,maintenance,20,medium,cleanup-crew,none,medium,low,INVT-SHR-001|INVT-SNA-001
+EQUIP-ATO-001,Auto Top Off Kit,equipment,stability-upgrade,20,low,equipment,none,low,medium,SERV-MNT-001
+EQUIP-QTN-001,Quarantine Setup Kit,equipment,risk-reduction,10,low,equipment,none,low,medium,SERV-CNS-001
+EQUIP-DOS-001,Dosing Pump Bundle,equipment,coral-stability,40,low,equipment,none,low,medium,SERV-MNT-001
+EQUIP-ALR-001,Temperature Alert Sensor,equipment,delivery-risk-reduction,10,low,equipment,none,low,low,SERV-CNS-001
+EQUIP-NOR-001,Nori Feeding Station,equipment,herbivore-care,30,low,equipment,none,low,low,FISH-TNG-001|FISH-FOX-001
+SERV-MNT-001,Monthly Maintenance Visit,service,office-service,0,low,service,none,low,high,EQUIP-ATO-001|EQUIP-DOS-001
+SERV-MNT-002,Biweekly Stability Visit,service,office-service,0,low,service,none,low,high,EQUIP-ATO-001
+SERV-EMR-001,Emergency Tank Rescue,service,service-recovery,0,low,service,none,low,high,EQUIP-DOS-001|EQUIP-ATO-001
+SERV-CNS-001,Remote Compatibility Consult,service,pre-sale-guidance,0,low,service,none,low,high,EQUIP-QTN-001

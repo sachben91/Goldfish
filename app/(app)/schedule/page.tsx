@@ -8,25 +8,23 @@ import { createClient } from "@/lib/supabase/server";
 import { VisitCard } from "@/components/schedule/VisitCard";
 import { SERVICE_TYPE_LABELS, isOverdue } from "@/lib/schedule";
 import type { ScheduledVisit } from "@/types/database";
-import { redirect } from "next/navigation";
+
+// TESTING MODE: auth disabled, defaulting to first technician in the database.
+// Re-enable auth before going live.
 
 export default async function SchedulePage() {
   const supabase = await createClient();
 
-  // Confirm the technician is logged in
-  const { data: { user } } = await supabase.auth.getUser();
-  if (!user) redirect("/login");
-
-  // Find the technician record linked to this auth user
+  // Use the first technician for demo purposes
   const { data: technician } = await supabase
     .from("technicians")
     .select("id, name")
-    .eq("auth_user_id", user.id)
+    .limit(1)
     .single();
 
-  // Fetch scheduled visits for the next 7 days
+  // Show all upcoming visits across the next 30 days so there's something to see
   const today = new Date().toISOString().split("T")[0];
-  const oneWeekOut = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+  const oneWeekOut = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
 
   const { data: visits } = await supabase
     .from("visit_schedule")
@@ -35,11 +33,11 @@ export default async function SchedulePage() {
       customer:customers(id, customer_id, customer_name, city, segment_hint, access_notes, customer_type),
       technician:technicians(id, name)
     `)
-    .eq("technician_id", technician?.id)
     .eq("status", "scheduled")
     .gte("scheduled_date", today)
     .lte("scheduled_date", oneWeekOut)
-    .order("scheduled_date", { ascending: true });
+    .order("scheduled_date", { ascending: true })
+    .limit(20);
 
   const todayVisits = (visits ?? []).filter((v) => v.scheduled_date === today) as ScheduledVisit[];
   const upcomingVisits = (visits ?? []).filter((v) => v.scheduled_date !== today) as ScheduledVisit[];

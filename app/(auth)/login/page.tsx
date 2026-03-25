@@ -15,13 +15,17 @@ export default function LoginPage() {
 
   const supabase = createClient();
 
-  async function signInAsDemo() {
+  async function signInWithEmail(e: React.FormEvent) {
+    e.preventDefault();
     setLoading(true);
     setError(null);
-    const { error } = await supabase.auth.signInAnonymously();
+    const { error } = await supabase.auth.signInWithOtp({
+      email: email.trim(),
+      options: { shouldCreateUser: true },
+    });
     setLoading(false);
     if (error) setError(error.message);
-    else window.location.href = "/schedule";
+    else setStep("otp");
   }
 
   async function requestOtp(e: React.FormEvent) {

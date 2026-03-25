@@ -4,7 +4,8 @@
 // Run once before using the app:
 //
 // Load .env.local so the script has the Supabase credentials
-import "dotenv/config";
+import * as dotenv from "dotenv";
+dotenv.config({ path: ".env.local" });
 //
 //   npx ts-node --project tsconfig.seed.json scripts/seed.ts
 //
@@ -142,13 +143,16 @@ async function seedTechnicians() {
     { name: "Nora Bell" },
   ];
 
-  // We upsert by name — if the record already exists, nothing changes.
-  const { error } = await supabase.from("technicians").upsert(knownTechnicians, {
-    onConflict: "name",
-    ignoreDuplicates: true,
-  });
-  if (error) throw error;
-  console.log(`  ✓ ${knownTechnicians.length} technicians seeded`);
+  // Check which technicians already exist and only insert the new ones.
+  const { data: existing } = await supabase.from("technicians").select("name");
+  const existingNames = new Set((existing ?? []).map((t) => t.name));
+  const toInsert = knownTechnicians.filter((t) => !existingNames.has(t.name));
+
+  if (toInsert.length > 0) {
+    const { error } = await supabase.from("technicians").insert(toInsert);
+    if (error) throw error;
+  }
+  console.log(`  ✓ ${knownTechnicians.length} technicians seeded (${toInsert.length} inserted, ${existingNames.size} already existed)`);
 }
 
 async function seedOrders() {
@@ -182,11 +186,16 @@ async function seedOrders() {
     })
     .filter(Boolean);
 
-  // Insert in batches to avoid request size limits
+  // Truncate first so re-running the seed is safe, then insert in batches.
+  // Orders use a UUID primary key — order_id is not unique (one order can have multiple line items).
+  await supabase.from("orders").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+
   const BATCH_SIZE = 500;
   for (let i = 0; i < records.length; i += BATCH_SIZE) {
     const batch = records.slice(i, i + BATCH_SIZE);
-    await upsert("orders", batch as object[], "order_id");
+    const { error } = await supabase.from("orders").insert(batch as object[]);
+    if (error) { console.error(`  Error inserting orders batch:`, error.message); throw error; }
+    console.log(`  ✓ orders batch ${i / BATCH_SIZE + 1}: ${batch.length} rows`);
   }
 }
 
@@ -227,10 +236,14 @@ async function seedServiceVisits() {
     })
     .filter(Boolean);
 
+  await supabase.from("service_visits").delete().neq("id", "00000000-0000-0000-0000-000000000000");
+
   const BATCH_SIZE = 500;
   for (let i = 0; i < records.length; i += BATCH_SIZE) {
     const batch = records.slice(i, i + BATCH_SIZE);
-    await upsert("service_visits", batch as object[], "visit_id");
+    const { error } = await supabase.from("service_visits").insert(batch as object[]);
+    if (error) { console.error(`  Error inserting visits batch:`, error.message); throw error; }
+    console.log(`  ✓ service_visits batch ${i / BATCH_SIZE + 1}: ${batch.length} rows`);
   }
 }
 

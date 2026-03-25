@@ -1,0 +1,481 @@
+customer_id,customer_name,customer_type,segment_hint,city,postal_code,signup_date,preferred_contact_channel,notes
+CUST-0001,Mara Levin,collector,reef-vip,Columbus,43215,2023-02-10,sms,frequent reef-safe livestock orders; low complaint rate; midday delivery preference
+CUST-0002,Jun Park,collector,rare-coral,Cincinnati,45202,2022-11-04,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0003,Lena Ortiz,hobbyist,aspirational-new-reef,Dayton,45402,2025-09-12,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0004,Theo Barnes,hobbyist,high-spend-high-support,Louisville,40202,2024-05-21,phone,large baskets and repeat same-day requests; replacement claims cluster on warm days
+CUST-0005,Harbor Design Studio Lobby,office_service,stable-contract,Columbus,43219,2021-08-15,email,monthly maintenance contract; predictable add-ons; low churn
+CUST-0006,North Loop Pediatrics Lobby,office_service,strict-window,Cincinnati,45208,2020-03-02,email,weekday-only access; missed window creates staff escalation quickly
+CUST-0007,Bell Cove Steakhouse,office_service,event-sensitive,Dayton,45409,2023-01-18,phone,tank appearance matters before private events; emergency calls are expensive but sticky
+CUST-0008,Aqua Habitat Wholesale,wholesale,margin-sensitive,Columbus,43085,2019-07-09,email,bulk dry goods and hardy livestock; larger revenue but lower margin
+CUST-0009,Riverglass Interiors,wholesale,install-partner,Cincinnati,45206,2022-04-30,email,stages office installs; wants reliable service follow-through
+CUST-0010,Priya Shah,collector,reef-invert-vip,Columbus,43212,2024-01-07,sms,small frequent shrimp and cleanup-crew orders; sends referrals
+CUST-0011,Omar Haddad,hobbyist,beginner-learning,Dayton,45429,2025-02-14,email,first reef tank; often asks what counts as reef safe
+CUST-0012,Fern & Co Dental Lobby,office_service,biweekly-contract,Louisville,40205,2023-06-26,email,biweekly maintenance plan; low tolerance for missed visits
+CUST-0013,Selene Haddad,collector,showpiece-hunter,Dayton,45419,2025-12-23,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0014,Selene Mills,collector,rare-coral,Cincinnati,45206,2023-12-13,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0015,Theo Mercer,collector,reef-invert-vip,Dayton,45402,2020-01-21,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0016,Sanjay Meyer,collector,mixed-reef-stable,Columbus,43215,2021-10-25,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0017,Selene Meyer,collector,mixed-reef-stable,Louisville,40202,2025-12-04,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0018,Mara Dawson,collector,reef-vip,Dayton,45429,2025-12-26,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0019,Pavel Salim,collector,reef-invert-vip,Louisville,40213,2019-11-03,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0020,Nadia Cho,collector,rare-coral,Louisville,40206,2020-06-18,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0021,Jordan Shah,collector,reef-vip,Louisville,40205,2023-03-01,phone,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0022,Omar Walsh,collector,showpiece-hunter,Dayton,45409,2023-10-16,email,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0023,Seth Larkin,collector,reef-invert-vip,Cincinnati,45220,2021-12-05,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0024,Leah Bishop,collector,rare-coral,Columbus,43219,2021-01-23,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0025,Elise Ford,collector,reef-vip,Dayton,45424,2022-04-06,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0026,Naomi Bennett,collector,rare-coral,Dayton,45409,2021-05-27,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0027,Mara Bellamy,collector,mixed-reef-stable,Columbus,43215,2021-03-16,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0028,Mika Levin,collector,rare-coral,Louisville,40206,2025-07-16,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0029,Gavin Bishop,collector,reef-invert-vip,Columbus,43212,2020-03-25,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0030,Rina Mendez,collector,rare-coral,Cincinnati,45220,2022-08-14,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0031,Luca Levin,collector,reef-vip,Cincinnati,45206,2023-03-31,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0032,Nina Rivers,collector,showpiece-hunter,Columbus,43085,2025-04-27,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0033,Leah Ford,collector,reef-invert-vip,Cincinnati,45206,2022-04-14,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0034,Carla Hale,collector,rare-coral,Columbus,43202,2023-09-14,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0035,Felix Greene,collector,reef-invert-vip,Cincinnati,45220,2024-08-15,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0036,Malik Park,collector,reef-invert-vip,Louisville,40222,2022-09-10,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0037,Devon Silva,collector,mixed-reef-stable,Dayton,45424,2020-04-27,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0038,Remy Tobin,collector,mixed-reef-stable,Louisville,40213,2023-06-27,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0039,Dylan Morris,collector,reef-vip,Columbus,43219,2021-08-05,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0040,Dylan Grant,collector,sps-step-up,Cincinnati,45220,2023-02-22,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0041,Luca Salim,collector,rare-coral,Louisville,40222,2021-06-02,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0042,Nadia Flores,collector,reef-vip,Cincinnati,45202,2021-02-20,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0043,Hector Patel,collector,sps-step-up,Cincinnati,45208,2020-01-20,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0044,Naomi Ford,collector,showpiece-hunter,Dayton,45424,2021-12-22,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0045,Zoe Mendez,collector,mixed-reef-stable,Dayton,45424,2019-10-03,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0046,Sofia Carver,collector,mixed-reef-stable,Cincinnati,45242,2022-01-19,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0047,Talia Hughes,collector,mixed-reef-stable,Cincinnati,45220,2022-03-22,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0048,Mina Hughes,collector,reef-vip,Cincinnati,45206,2020-12-04,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0049,Mika Rowe,collector,showpiece-hunter,Columbus,43219,2019-08-05,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0050,Lena Levin,collector,sps-step-up,Cincinnati,45220,2025-10-16,email,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0051,Zoe Patel,collector,reef-invert-vip,Louisville,40202,2021-10-13,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0052,Talia Salim,collector,mixed-reef-stable,Cincinnati,45208,2023-05-16,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0053,Margo Levin,collector,reef-invert-vip,Dayton,45402,2025-02-07,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0054,Zoe Bishop,collector,reef-vip,Cincinnati,45242,2025-12-31,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0055,Remy Lopez,collector,mixed-reef-stable,Cincinnati,45206,2025-11-19,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0056,Omar Stone,collector,mixed-reef-stable,Columbus,43215,2025-08-27,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0057,Iris Bishop,collector,reef-invert-vip,Cincinnati,45202,2020-12-17,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0058,Grant Barnes,collector,reef-vip,Dayton,45402,2021-10-04,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0059,Bianca Bishop,collector,rare-coral,Cincinnati,45220,2019-10-13,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0060,Devon Patel,collector,rare-coral,Columbus,43212,2025-02-09,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0061,Luca Mercer,collector,reef-vip,Louisville,40206,2021-12-07,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0062,Mika Nguyen,collector,mixed-reef-stable,Cincinnati,45242,2021-05-05,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0063,Pavel Bennett,collector,showpiece-hunter,Cincinnati,45202,2025-02-08,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0064,Noelle Bellamy,collector,rare-coral,Cincinnati,45208,2023-09-16,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0065,Mason Rivers,collector,mixed-reef-stable,Dayton,45424,2020-07-27,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0066,Luca Meyer,collector,sps-step-up,Dayton,45402,2023-10-14,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0067,Talia Haddad,collector,sps-step-up,Cincinnati,45242,2024-06-24,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0068,Sofia Rowe,collector,mixed-reef-stable,Louisville,40202,2023-08-05,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0069,Miles Meyer,collector,reef-invert-vip,Cincinnati,45242,2024-05-05,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0070,Carla Stone,collector,rare-coral,Cincinnati,45202,2020-09-04,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0071,Camila Cole,collector,rare-coral,Cincinnati,45206,2019-09-02,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0072,Malik Rao,collector,mixed-reef-stable,Cincinnati,45220,2021-07-25,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0073,Talia Greene,collector,sps-step-up,Cincinnati,45202,2025-12-24,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0074,Dylan Salim,collector,reef-vip,Columbus,43085,2024-08-25,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0075,Ari Rivers,collector,reef-invert-vip,Cincinnati,45206,2019-09-25,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0076,Yara Silva,collector,sps-step-up,Columbus,43085,2024-12-15,email,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0077,Remy Yu,collector,sps-step-up,Cincinnati,45208,2025-08-10,email,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0078,Mina Tobin,collector,sps-step-up,Louisville,40213,2024-05-22,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0079,Bianca Bell,collector,mixed-reef-stable,Dayton,45402,2023-11-23,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0080,Margo Mills,collector,mixed-reef-stable,Louisville,40205,2023-11-20,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0081,Dylan Cho,collector,mixed-reef-stable,Dayton,45429,2023-10-24,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0082,Elise Foster,collector,mixed-reef-stable,Louisville,40206,2026-01-27,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0083,Jun Morris,collector,sps-step-up,Columbus,43219,2021-03-10,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0084,Camila Mendez,collector,rare-coral,Columbus,43215,2019-09-08,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0085,Theo Bellamy,collector,sps-step-up,Columbus,43212,2021-10-02,email,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0086,Gavin Warren,collector,reef-vip,Columbus,43215,2025-12-23,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0087,Dylan Ortiz,collector,reef-invert-vip,Columbus,43215,2023-02-17,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0088,Priya Khan,collector,mixed-reef-stable,Dayton,45419,2025-04-11,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0089,Seth Stone,collector,reef-invert-vip,Louisville,40213,2023-06-06,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0090,Nadia Shah,collector,mixed-reef-stable,Dayton,45424,2024-07-31,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0091,Nora Haddad,collector,mixed-reef-stable,Cincinnati,45206,2020-09-07,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0092,Felix Morris,collector,reef-invert-vip,Dayton,45402,2021-01-19,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0093,Hector Cho,collector,sps-step-up,Cincinnati,45208,2022-01-31,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0094,Camila Silva,collector,showpiece-hunter,Dayton,45402,2025-07-12,phone,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0095,Piper Stone,collector,rare-coral,Columbus,43085,2020-01-03,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0096,Talia Mills,collector,reef-invert-vip,Columbus,43212,2020-11-17,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0097,Seth Nguyen,collector,showpiece-hunter,Columbus,43202,2026-01-23,phone,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0098,Dylan Bennett,collector,mixed-reef-stable,Dayton,45409,2019-09-14,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0099,Jun Greene,collector,reef-invert-vip,Cincinnati,45202,2022-03-08,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0100,Mika Khan,collector,sps-step-up,Columbus,43202,2022-07-31,email,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0101,Mika Bishop,collector,showpiece-hunter,Cincinnati,45220,2019-11-22,phone,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0102,Gavin Sato,collector,reef-invert-vip,Dayton,45419,2019-06-05,email,small frequent invert orders; strong retention and occasional referrals
+CUST-0103,Omar Warren,collector,rare-coral,Louisville,40206,2025-08-20,phone,buys uncommon coral and asks detailed compatibility questions
+CUST-0104,Miles Shah,collector,mixed-reef-stable,Louisville,40205,2025-05-19,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0105,Cora Larkin,collector,sps-step-up,Columbus,43219,2020-12-16,phone,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0106,Piper Park,collector,mixed-reef-stable,Cincinnati,45206,2020-04-06,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0107,Rina Warren,collector,reef-invert-vip,Dayton,45429,2022-03-18,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0108,Quinn Marin,collector,reef-invert-vip,Louisville,40206,2021-11-16,email,small frequent invert orders; strong retention and occasional referrals
+CUST-0109,Cora Dawson,collector,sps-step-up,Dayton,45419,2024-11-23,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0110,Mina Ford,collector,reef-invert-vip,Cincinnati,45242,2023-12-18,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0111,Sanjay Foster,collector,rare-coral,Dayton,45409,2024-09-24,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0112,Carla Tobin,collector,mixed-reef-stable,Cincinnati,45242,2019-06-23,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0113,Sofia Ford,collector,sps-step-up,Columbus,43215,2022-10-09,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0114,Rina Larkin,collector,mixed-reef-stable,Columbus,43212,2020-07-01,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0115,Kira Mendez,collector,showpiece-hunter,Dayton,45424,2022-04-30,phone,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0116,Avery Mills,collector,reef-vip,Dayton,45409,2022-12-02,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0117,Seth Salim,collector,rare-coral,Dayton,45402,2022-09-21,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0118,Lena Ford,collector,sps-step-up,Columbus,43202,2020-06-02,phone,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0119,Luca Flores,collector,mixed-reef-stable,Dayton,45402,2025-03-03,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0120,Malik Silva,collector,showpiece-hunter,Columbus,43219,2022-02-07,sms,likes visually dramatic fish; occasionally pushes for same-day delivery
+CUST-0121,Mika Mills,collector,mixed-reef-stable,Cincinnati,45242,2020-02-13,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0122,Hector Bell,collector,mixed-reef-stable,Columbus,43202,2025-07-30,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0123,Miles Mendez,collector,reef-invert-vip,Dayton,45402,2022-08-14,phone,small frequent invert orders; strong retention and occasional referrals
+CUST-0124,Gavin Bellamy,collector,rare-coral,Columbus,43202,2019-11-01,sms,buys uncommon coral and asks detailed compatibility questions
+CUST-0125,Bianca Ford,collector,rare-coral,Dayton,45402,2019-12-18,email,buys uncommon coral and asks detailed compatibility questions
+CUST-0126,Rina Baxter,collector,reef-vip,Columbus,43202,2019-10-10,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0127,Dylan Marin,collector,mixed-reef-stable,Cincinnati,45208,2021-08-15,sms,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0128,Kira Bell,collector,mixed-reef-stable,Dayton,45429,2019-06-01,email,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0129,Mina Haddad,collector,reef-vip,Louisville,40205,2021-04-17,email,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0130,Priya Lopez,collector,mixed-reef-stable,Dayton,45402,2022-10-22,phone,healthy repeat cadence; prefers calm recommendation logic over novelty
+CUST-0131,Pavel Warren,collector,reef-invert-vip,Columbus,43212,2024-10-12,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0132,Noelle Mercer,collector,reef-vip,Columbus,43219,2022-10-24,sms,frequent coral and invert orders; low support burden; notices delivery quality immediately
+CUST-0133,Iris Sato,collector,sps-step-up,Columbus,43212,2025-10-12,sms,moving from forgiving coral toward SPS; asks for stability gear advice
+CUST-0134,Selene Geller,collector,reef-invert-vip,Columbus,43215,2021-01-24,sms,small frequent invert orders; strong retention and occasional referrals
+CUST-0135,Camila Hughes,hobbyist,upgrade-cycle,Louisville,40222,2024-06-08,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0136,Nina Dawson,hobbyist,high-spend-high-support,Louisville,40213,2020-07-22,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0137,Jonah Hale,hobbyist,beginner-learning,Columbus,43215,2023-06-19,phone,first reef tank; often asks what counts as reef safe
+CUST-0138,Gavin Marin,hobbyist,beginner-learning,Columbus,43202,2020-04-20,sms,first reef tank; often asks what counts as reef safe
+CUST-0139,Jordan Navarro,hobbyist,beginner-learning,Columbus,43085,2021-04-08,phone,first reef tank; often asks what counts as reef safe
+CUST-0140,Hector Salim,hobbyist,high-spend-high-support,Cincinnati,45206,2022-10-24,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0141,Miles Hale,hobbyist,beginner-learning,Louisville,40213,2024-09-15,phone,first reef tank; often asks what counts as reef safe
+CUST-0142,Dylan Shah,hobbyist,beginner-learning,Cincinnati,45206,2022-08-26,phone,first reef tank; often asks what counts as reef safe
+CUST-0143,Piper Ford,hobbyist,aspirational-new-reef,Cincinnati,45242,2020-02-05,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0144,Jun Marin,hobbyist,upgrade-cycle,Columbus,43212,2025-05-10,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0145,Zoe Baxter,hobbyist,high-spend-high-support,Dayton,45402,2019-07-21,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0146,Omar Marin,hobbyist,beginner-learning,Columbus,43215,2023-03-04,email,first reef tank; often asks what counts as reef safe
+CUST-0147,Priya Navarro,hobbyist,aspirational-new-reef,Columbus,43085,2022-03-24,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0148,Pavel Shah,hobbyist,upgrade-cycle,Louisville,40202,2024-06-17,email,moving up from starter livestock into nicer coral and equipment
+CUST-0149,Devon Haddad,hobbyist,high-spend-high-support,Columbus,43212,2019-07-15,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0150,Nina Mendez,hobbyist,beginner-learning,Columbus,43215,2022-03-15,sms,first reef tank; often asks what counts as reef safe
+CUST-0151,Luca Baxter,hobbyist,beginner-learning,Louisville,40213,2020-05-23,email,first reef tank; often asks what counts as reef safe
+CUST-0152,Ari Sato,hobbyist,freshwater-convert,Cincinnati,45206,2022-10-25,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0153,Margo Bennett,hobbyist,freshwater-convert,Cincinnati,45202,2020-05-14,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0154,Sofia Kim,hobbyist,beginner-learning,Cincinnati,45202,2019-10-09,email,first reef tank; often asks what counts as reef safe
+CUST-0155,Seth Carver,hobbyist,beginner-learning,Dayton,45429,2020-08-17,phone,first reef tank; often asks what counts as reef safe
+CUST-0156,Priya Greene,hobbyist,upgrade-cycle,Columbus,43202,2019-08-28,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0157,Avery Greene,hobbyist,high-spend-high-support,Dayton,45402,2023-12-23,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0158,Nadia Price,hobbyist,aspirational-new-reef,Louisville,40202,2024-09-16,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0159,Cora Nguyen,hobbyist,aspirational-new-reef,Cincinnati,45202,2022-01-09,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0160,Camila Bellamy,hobbyist,aspirational-new-reef,Columbus,43202,2020-11-19,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0161,Grant Navarro,hobbyist,beginner-learning,Columbus,43212,2024-08-17,email,first reef tank; often asks what counts as reef safe
+CUST-0162,Sanjay Hale,hobbyist,beginner-learning,Cincinnati,45242,2025-06-21,sms,first reef tank; often asks what counts as reef safe
+CUST-0163,Noelle Price,hobbyist,aspirational-new-reef,Dayton,45429,2019-02-25,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0164,Mina Bishop,hobbyist,cleanup-crew-repeat,Dayton,45424,2021-12-30,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0165,Margo Navarro,hobbyist,beginner-learning,Louisville,40205,2022-07-02,sms,first reef tank; often asks what counts as reef safe
+CUST-0166,Lena Bennett,hobbyist,upgrade-cycle,Dayton,45424,2023-02-05,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0167,Leah Hughes,hobbyist,beginner-learning,Cincinnati,45202,2024-12-12,email,first reef tank; often asks what counts as reef safe
+CUST-0168,Gavin Morris,hobbyist,beginner-learning,Columbus,43215,2019-04-30,sms,first reef tank; often asks what counts as reef safe
+CUST-0169,Ari Mercer,hobbyist,cleanup-crew-repeat,Columbus,43085,2024-03-01,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0170,Noelle Walsh,hobbyist,upgrade-cycle,Dayton,45402,2021-12-28,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0171,Jordan Patel,hobbyist,high-spend-high-support,Cincinnati,45208,2022-02-26,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0172,Talia Patel,hobbyist,beginner-learning,Columbus,43212,2021-11-25,email,first reef tank; often asks what counts as reef safe
+CUST-0173,Felix Phelps,hobbyist,aspirational-new-reef,Dayton,45429,2023-08-13,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0174,Nina Morris,hobbyist,cleanup-crew-repeat,Louisville,40206,2022-11-08,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0175,Noelle Mendez,hobbyist,freshwater-convert,Dayton,45424,2019-12-19,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0176,Jordan Khan,hobbyist,aspirational-new-reef,Dayton,45402,2020-07-02,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0177,Ruth Baxter,hobbyist,cleanup-crew-repeat,Dayton,45419,2022-09-27,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0178,Hector Rowe,hobbyist,freshwater-convert,Columbus,43085,2025-02-13,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0179,Ruth Bishop,hobbyist,upgrade-cycle,Dayton,45419,2026-02-01,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0180,Zoe Price,hobbyist,aspirational-new-reef,Louisville,40206,2023-01-14,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0181,Carla Salim,hobbyist,upgrade-cycle,Louisville,40206,2023-02-06,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0182,Cora Lopez,hobbyist,aspirational-new-reef,Cincinnati,45242,2022-03-03,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0183,Bianca Khan,hobbyist,freshwater-convert,Dayton,45429,2019-11-08,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0184,Elliot Levin,hobbyist,freshwater-convert,Louisville,40202,2023-01-18,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0185,Cora Warren,hobbyist,beginner-learning,Cincinnati,45206,2025-09-28,email,first reef tank; often asks what counts as reef safe
+CUST-0186,Bianca Bennett,hobbyist,beginner-learning,Louisville,40205,2021-12-31,email,first reef tank; often asks what counts as reef safe
+CUST-0187,Elise Grant,hobbyist,high-spend-high-support,Cincinnati,45208,2020-11-11,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0188,Jordan Tobin,hobbyist,beginner-learning,Louisville,40213,2025-07-10,sms,first reef tank; often asks what counts as reef safe
+CUST-0189,Elliot Mercer,hobbyist,aspirational-new-reef,Dayton,45429,2022-12-08,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0190,Grant Bellamy,hobbyist,beginner-learning,Dayton,45402,2025-05-23,phone,first reef tank; often asks what counts as reef safe
+CUST-0191,Noelle Navarro,hobbyist,beginner-learning,Columbus,43085,2020-12-27,email,first reef tank; often asks what counts as reef safe
+CUST-0192,Leah Levin,hobbyist,high-spend-high-support,Dayton,45402,2026-02-05,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0193,Avery Ford,hobbyist,upgrade-cycle,Louisville,40202,2022-08-29,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0194,Nora Phelps,hobbyist,freshwater-convert,Cincinnati,45206,2023-11-16,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0195,Malik Sato,hobbyist,freshwater-convert,Columbus,43212,2021-06-23,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0196,Mara Carver,hobbyist,upgrade-cycle,Cincinnati,45202,2019-10-06,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0197,Nora Larkin,hobbyist,cleanup-crew-repeat,Dayton,45409,2021-08-24,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0198,Dylan Tobin,hobbyist,aspirational-new-reef,Louisville,40222,2024-08-29,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0199,Ruth Tobin,hobbyist,freshwater-convert,Columbus,43212,2020-01-31,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0200,Elise Sato,hobbyist,upgrade-cycle,Cincinnati,45202,2022-07-01,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0201,Remy Silva,hobbyist,upgrade-cycle,Cincinnati,45220,2026-01-01,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0202,Jun Flores,hobbyist,upgrade-cycle,Louisville,40206,2021-09-25,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0203,Mina Ortiz,hobbyist,upgrade-cycle,Columbus,43219,2022-08-16,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0204,Sanjay Warren,hobbyist,high-spend-high-support,Dayton,45429,2024-06-30,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0205,Jordan Cho,hobbyist,cleanup-crew-repeat,Columbus,43085,2021-05-29,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0206,Remy Salim,hobbyist,beginner-learning,Dayton,45424,2024-08-28,phone,first reef tank; often asks what counts as reef safe
+CUST-0207,Gavin Rivers,hobbyist,upgrade-cycle,Columbus,43219,2022-10-04,email,moving up from starter livestock into nicer coral and equipment
+CUST-0208,Nina Barnes,hobbyist,high-spend-high-support,Dayton,45402,2023-06-30,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0209,Sanjay Bell,hobbyist,beginner-learning,Louisville,40222,2023-03-26,phone,first reef tank; often asks what counts as reef safe
+CUST-0210,Camila Morris,hobbyist,beginner-learning,Cincinnati,45208,2024-12-03,phone,first reef tank; often asks what counts as reef safe
+CUST-0211,Malik Cho,hobbyist,upgrade-cycle,Dayton,45424,2024-09-10,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0212,Devon Salim,hobbyist,high-spend-high-support,Louisville,40222,2020-09-17,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0213,Devon Bellamy,hobbyist,high-spend-high-support,Cincinnati,45242,2019-04-07,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0214,Leah Stone,hobbyist,cleanup-crew-repeat,Louisville,40213,2021-09-10,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0215,Elise Tobin,hobbyist,beginner-learning,Cincinnati,45206,2019-08-24,sms,first reef tank; often asks what counts as reef safe
+CUST-0216,Devon Mercer,hobbyist,upgrade-cycle,Columbus,43085,2019-09-25,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0217,Jonah Phelps,hobbyist,aspirational-new-reef,Columbus,43202,2019-11-10,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0218,Malik Levin,hobbyist,freshwater-convert,Dayton,45424,2025-08-11,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0219,Mason Baxter,hobbyist,upgrade-cycle,Cincinnati,45208,2023-11-17,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0220,Elise Bellamy,hobbyist,freshwater-convert,Louisville,40213,2021-06-19,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0221,Yara Hale,hobbyist,beginner-learning,Cincinnati,45206,2024-12-05,phone,first reef tank; often asks what counts as reef safe
+CUST-0222,Zoe Meyer,hobbyist,freshwater-convert,Cincinnati,45208,2019-10-05,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0223,Devon Yu,hobbyist,upgrade-cycle,Cincinnati,45220,2024-06-11,email,moving up from starter livestock into nicer coral and equipment
+CUST-0224,Cora Mercer,hobbyist,cleanup-crew-repeat,Cincinnati,45208,2024-10-07,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0225,Gavin Walsh,hobbyist,aspirational-new-reef,Louisville,40202,2024-01-24,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0226,Theo Geller,hobbyist,upgrade-cycle,Cincinnati,45220,2020-03-06,email,moving up from starter livestock into nicer coral and equipment
+CUST-0227,Devon Tobin,hobbyist,beginner-learning,Columbus,43202,2025-03-24,phone,first reef tank; often asks what counts as reef safe
+CUST-0228,Pavel Phelps,hobbyist,aspirational-new-reef,Columbus,43219,2019-12-05,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0229,Lena Bell,hobbyist,high-spend-high-support,Louisville,40205,2020-01-13,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0230,Nina Nguyen,hobbyist,high-spend-high-support,Columbus,43212,2023-08-30,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0231,Dylan Cole,hobbyist,aspirational-new-reef,Dayton,45409,2020-09-04,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0232,Mason Yu,hobbyist,high-spend-high-support,Columbus,43215,2019-12-18,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0233,Remy Bishop,hobbyist,beginner-learning,Cincinnati,45206,2023-01-09,email,first reef tank; often asks what counts as reef safe
+CUST-0234,Iris Mendez,hobbyist,beginner-learning,Columbus,43085,2025-08-09,sms,first reef tank; often asks what counts as reef safe
+CUST-0235,Talia Marin,hobbyist,cleanup-crew-repeat,Cincinnati,45202,2023-11-09,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0236,Jonah Rowe,hobbyist,high-spend-high-support,Cincinnati,45206,2020-07-16,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0237,Noelle Shah,hobbyist,cleanup-crew-repeat,Columbus,43219,2021-08-05,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0238,Talia Bellamy,hobbyist,beginner-learning,Columbus,43202,2019-02-08,sms,first reef tank; often asks what counts as reef safe
+CUST-0239,Jonah Meyer,hobbyist,upgrade-cycle,Cincinnati,45206,2019-11-21,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0240,Selene Carver,hobbyist,cleanup-crew-repeat,Cincinnati,45242,2022-08-09,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0241,Priya Mendez,hobbyist,freshwater-convert,Dayton,45424,2020-06-02,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0242,Zoe Kim,hobbyist,beginner-learning,Columbus,43219,2019-04-06,email,first reef tank; often asks what counts as reef safe
+CUST-0243,Lena Cole,hobbyist,cleanup-crew-repeat,Louisville,40206,2022-05-17,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0244,Omar Bell,hobbyist,high-spend-high-support,Columbus,43215,2021-06-24,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0245,Seth Marin,hobbyist,beginner-learning,Cincinnati,45220,2019-06-03,sms,first reef tank; often asks what counts as reef safe
+CUST-0246,Hector Grant,hobbyist,beginner-learning,Louisville,40222,2025-12-05,email,first reef tank; often asks what counts as reef safe
+CUST-0247,Rina Bell,hobbyist,beginner-learning,Columbus,43215,2023-07-31,sms,first reef tank; often asks what counts as reef safe
+CUST-0248,Ruth Lopez,hobbyist,cleanup-crew-repeat,Louisville,40222,2023-10-09,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0249,Nina Walsh,hobbyist,upgrade-cycle,Dayton,45402,2023-07-11,email,moving up from starter livestock into nicer coral and equipment
+CUST-0250,Yara Bishop,hobbyist,cleanup-crew-repeat,Columbus,43202,2024-02-23,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0251,Jonah Bishop,hobbyist,upgrade-cycle,Cincinnati,45206,2022-05-05,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0252,Mason Morris,hobbyist,beginner-learning,Columbus,43215,2020-08-20,email,first reef tank; often asks what counts as reef safe
+CUST-0253,Jordan Bennett,hobbyist,freshwater-convert,Louisville,40205,2024-04-11,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0254,Jun Phelps,hobbyist,high-spend-high-support,Columbus,43215,2023-11-18,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0255,Theo Tobin,hobbyist,beginner-learning,Dayton,45402,2021-03-02,sms,first reef tank; often asks what counts as reef safe
+CUST-0256,Selene Mendez,hobbyist,upgrade-cycle,Cincinnati,45220,2023-11-07,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0257,Yara Mercer,hobbyist,beginner-learning,Columbus,43202,2025-11-22,email,first reef tank; often asks what counts as reef safe
+CUST-0258,Mika Bellamy,hobbyist,aspirational-new-reef,Cincinnati,45242,2022-04-20,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0259,Remy Kim,hobbyist,beginner-learning,Columbus,43202,2024-07-02,email,first reef tank; often asks what counts as reef safe
+CUST-0260,Bianca Haddad,hobbyist,freshwater-convert,Columbus,43212,2022-10-18,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0261,Luca Bell,hobbyist,beginner-learning,Cincinnati,45242,2019-03-14,phone,first reef tank; often asks what counts as reef safe
+CUST-0262,Bianca Mills,hobbyist,beginner-learning,Louisville,40205,2020-06-25,phone,first reef tank; often asks what counts as reef safe
+CUST-0263,Mason Navarro,hobbyist,high-spend-high-support,Columbus,43219,2025-07-10,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0264,Naomi Price,hobbyist,aspirational-new-reef,Columbus,43215,2019-03-19,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0265,Kira Flores,hobbyist,freshwater-convert,Dayton,45409,2021-06-19,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0266,Theo Levin,hobbyist,high-spend-high-support,Louisville,40213,2025-12-02,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0267,Omar Lopez,hobbyist,high-spend-high-support,Columbus,43085,2021-03-14,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0268,Omar Nguyen,hobbyist,high-spend-high-support,Cincinnati,45220,2023-01-20,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0269,Omar Navarro,hobbyist,aspirational-new-reef,Cincinnati,45220,2020-06-21,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0270,Avery Larkin,hobbyist,beginner-learning,Columbus,43219,2022-10-09,phone,first reef tank; often asks what counts as reef safe
+CUST-0271,Theo Cho,hobbyist,beginner-learning,Columbus,43085,2023-02-01,email,first reef tank; often asks what counts as reef safe
+CUST-0272,Theo Walsh,hobbyist,aspirational-new-reef,Columbus,43212,2020-07-02,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0273,Iris Rao,hobbyist,upgrade-cycle,Dayton,45424,2019-04-08,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0274,Jun Rao,hobbyist,beginner-learning,Columbus,43085,2019-08-19,email,first reef tank; often asks what counts as reef safe
+CUST-0275,Margo Yu,hobbyist,beginner-learning,Cincinnati,45242,2023-09-15,phone,first reef tank; often asks what counts as reef safe
+CUST-0276,Mika Larkin,hobbyist,high-spend-high-support,Cincinnati,45220,2019-09-11,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0277,Camila Kim,hobbyist,cleanup-crew-repeat,Columbus,43212,2022-02-06,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0278,Selene Lopez,hobbyist,beginner-learning,Dayton,45424,2023-02-09,email,first reef tank; often asks what counts as reef safe
+CUST-0279,Mika Hale,hobbyist,cleanup-crew-repeat,Columbus,43212,2022-11-23,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0280,Piper Barnes,hobbyist,aspirational-new-reef,Louisville,40213,2025-11-25,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0281,Mason Hale,hobbyist,beginner-learning,Cincinnati,45202,2021-01-10,sms,first reef tank; often asks what counts as reef safe
+CUST-0282,Remy Marin,hobbyist,freshwater-convert,Columbus,43215,2022-10-20,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0283,Noelle Flores,hobbyist,beginner-learning,Cincinnati,45202,2019-11-04,sms,first reef tank; often asks what counts as reef safe
+CUST-0284,Margo Salim,hobbyist,aspirational-new-reef,Louisville,40213,2024-12-20,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0285,Camila Foster,hobbyist,high-spend-high-support,Columbus,43212,2025-01-02,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0286,Pavel Grant,hobbyist,beginner-learning,Columbus,43202,2021-10-11,phone,first reef tank; often asks what counts as reef safe
+CUST-0287,Talia Park,hobbyist,cleanup-crew-repeat,Louisville,40206,2019-03-06,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0288,Priya Bennett,hobbyist,high-spend-high-support,Cincinnati,45208,2024-07-11,phone,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0289,Yara Khan,hobbyist,aspirational-new-reef,Dayton,45409,2025-01-16,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0290,Grant Mills,hobbyist,cleanup-crew-repeat,Cincinnati,45202,2025-09-25,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0291,Leah Rivers,hobbyist,upgrade-cycle,Cincinnati,45208,2024-11-29,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0292,Nadia Tobin,hobbyist,beginner-learning,Cincinnati,45220,2023-06-10,phone,first reef tank; often asks what counts as reef safe
+CUST-0293,Sofia Hale,hobbyist,cleanup-crew-repeat,Columbus,43085,2024-12-29,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0294,Omar Khan,hobbyist,beginner-learning,Columbus,43215,2020-10-24,email,first reef tank; often asks what counts as reef safe
+CUST-0295,Omar Sato,hobbyist,upgrade-cycle,Columbus,43219,2020-08-10,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0296,Theo Park,hobbyist,cleanup-crew-repeat,Dayton,45424,2019-10-17,email,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0297,Leah Marin,hobbyist,upgrade-cycle,Cincinnati,45208,2024-02-22,phone,moving up from starter livestock into nicer coral and equipment
+CUST-0298,Mara Warren,hobbyist,upgrade-cycle,Dayton,45429,2025-01-13,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0299,Mason Price,hobbyist,aspirational-new-reef,Cincinnati,45206,2023-03-15,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0300,Nora Khan,hobbyist,freshwater-convert,Columbus,43212,2020-04-01,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0301,Theo Haddad,hobbyist,upgrade-cycle,Louisville,40222,2020-06-08,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0302,Talia Morris,hobbyist,high-spend-high-support,Dayton,45402,2019-04-18,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0303,Avery Rowe,hobbyist,freshwater-convert,Cincinnati,45242,2024-06-05,email,transitioning from freshwater; needs explicit compatibility language
+CUST-0304,Camila Warren,hobbyist,aspirational-new-reef,Dayton,45419,2024-10-01,phone,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0305,Mina Carver,hobbyist,high-spend-high-support,Louisville,40213,2023-05-21,sms,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0306,Noelle Dawson,hobbyist,freshwater-convert,Dayton,45424,2021-12-29,sms,transitioning from freshwater; needs explicit compatibility language
+CUST-0307,Iris Greene,hobbyist,freshwater-convert,Louisville,40205,2022-11-13,phone,transitioning from freshwater; needs explicit compatibility language
+CUST-0308,Jordan Grant,hobbyist,upgrade-cycle,Columbus,43212,2019-02-04,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0309,Felix Lopez,hobbyist,beginner-learning,Columbus,43202,2023-05-04,phone,first reef tank; often asks what counts as reef safe
+CUST-0310,Naomi Mendez,hobbyist,aspirational-new-reef,Columbus,43085,2025-10-20,sms,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0311,Lena Larkin,hobbyist,cleanup-crew-repeat,Columbus,43085,2021-01-03,phone,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0312,Elliot Yu,hobbyist,upgrade-cycle,Dayton,45424,2021-08-08,sms,moving up from starter livestock into nicer coral and equipment
+CUST-0313,Jun Bennett,hobbyist,beginner-learning,Columbus,43215,2022-10-30,sms,first reef tank; often asks what counts as reef safe
+CUST-0314,Yara Bell,hobbyist,cleanup-crew-repeat,Louisville,40205,2021-12-10,sms,frequent small invert orders; low spend per basket but good repeat behavior
+CUST-0315,Cora Shah,hobbyist,aspirational-new-reef,Louisville,40206,2025-10-29,email,new saltwater tank; rush requests common; often asks sales for bundle advice
+CUST-0316,Sanjay Khan,hobbyist,high-spend-high-support,Dayton,45409,2022-08-26,email,large baskets and repeat same-day requests; support load spikes after hot routes
+CUST-0317,Northshore Supply Office Install Team,office_service,stable-contract,Columbus,43215,2020-07-22,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0318,Cedar Dermatology Center,office_service,stable-contract,Cincinnati,45242,2019-12-21,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0319,Parkside Wine Bar,office_service,biweekly-contract,Louisville,40202,2025-08-10,email,higher service frequency and low tolerance for delayed visits
+CUST-0320,Sunline Family Practice,office_service,biweekly-contract,Columbus,43085,2023-03-12,email,higher service frequency and low tolerance for delayed visits
+CUST-0321,Glass Reef Dry Goods Distributor,office_service,stable-contract,Cincinnati,45208,2020-08-11,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0322,Maple Restaurant Group,office_service,hospitality-display,Columbus,43085,2020-07-26,email,display quality matters on weekends and around guest reviews
+CUST-0323,Fern & Co Steakhouse,office_service,stable-contract,Louisville,40222,2024-12-18,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0324,Northshore Supply Install Partner,office_service,stable-contract,Louisville,40222,2024-04-09,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0325,Westfield Restaurant Group,office_service,strict-window,Louisville,40206,2023-02-26,email,weekday-only access and fast escalation when windows slip
+CUST-0326,Bluebird Creative Office,office_service,property-manager,Cincinnati,45208,2023-11-18,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0327,True Current Install Partner,office_service,strict-window,Columbus,43212,2024-01-23,email,weekday-only access and fast escalation when windows slip
+CUST-0328,Juniper Creative Office,office_service,property-manager,Dayton,45419,2019-10-24,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0329,Cedar Restaurant Group,office_service,event-sensitive,Cincinnati,45242,2025-02-27,phone,tank appearance matters before events; emergency requests happen under deadline
+CUST-0330,Bridgehouse Pediatrics Lobby,office_service,biweekly-contract,Dayton,45419,2024-01-26,phone,higher service frequency and low tolerance for delayed visits
+CUST-0331,Glass Reef Livestock Reseller,office_service,property-manager,Cincinnati,45220,2020-02-27,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0332,Riverglass Property Group Lobby,office_service,biweekly-contract,Cincinnati,45206,2023-12-30,phone,higher service frequency and low tolerance for delayed visits
+CUST-0333,Blue Current Office Install Team,office_service,strict-window,Cincinnati,45202,2023-07-31,email,weekday-only access and fast escalation when windows slip
+CUST-0334,Summit Surgery Center,office_service,stable-contract,Dayton,45402,2025-03-31,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0335,True Current Wholesale,office_service,property-manager,Louisville,40202,2022-01-23,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0336,Oakline Coworking Lobby,office_service,property-manager,Columbus,43212,2022-01-09,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0337,Fern & Co Pediatrics Lobby,office_service,property-manager,Louisville,40202,2024-10-31,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0338,Harbor Family Practice,office_service,biweekly-contract,Cincinnati,45208,2019-09-06,phone,higher service frequency and low tolerance for delayed visits
+CUST-0339,Harbor Restaurant Group,office_service,event-sensitive,Cincinnati,45242,2023-06-19,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0340,Steady Tide Office Install Team,office_service,stable-contract,Columbus,43085,2025-12-02,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0341,Lumen Dermatology Center,office_service,stable-contract,Dayton,45409,2024-07-17,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0342,Riverglass Interiors Install Partner,office_service,stable-contract,Columbus,43219,2025-12-06,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0343,Parkside Design Studio Lobby,office_service,biweekly-contract,Louisville,40202,2025-08-10,phone,higher service frequency and low tolerance for delayed visits
+CUST-0344,Northgate Design Studio Lobby,office_service,strict-window,Cincinnati,45208,2022-01-24,email,weekday-only access and fast escalation when windows slip
+CUST-0345,Saltline Studio Livestock Reseller,office_service,event-sensitive,Dayton,45402,2022-04-20,phone,tank appearance matters before events; emergency requests happen under deadline
+CUST-0346,Bridgehouse Hotel Atrium,office_service,stable-contract,Columbus,43085,2024-04-04,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0347,Common Basin Wholesale,office_service,biweekly-contract,Columbus,43085,2024-11-10,phone,higher service frequency and low tolerance for delayed visits
+CUST-0348,North Loop Creative Office,office_service,biweekly-contract,Columbus,43202,2023-09-26,email,higher service frequency and low tolerance for delayed visits
+CUST-0349,Harbor Hotel Atrium,office_service,strict-window,Dayton,45429,2024-12-12,phone,weekday-only access and fast escalation when windows slip
+CUST-0350,Northgate Wine Bar,office_service,hospitality-display,Cincinnati,45202,2022-07-11,email,display quality matters on weekends and around guest reviews
+CUST-0351,Harbor Steakhouse,office_service,hospitality-display,Columbus,43202,2019-05-19,email,display quality matters on weekends and around guest reviews
+CUST-0352,Aqua Habitat Install Partner,office_service,stable-contract,Dayton,45429,2023-11-20,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0353,Summit Pediatrics Lobby,office_service,biweekly-contract,Louisville,40206,2022-09-02,email,higher service frequency and low tolerance for delayed visits
+CUST-0354,Northgate Dental Lobby,office_service,biweekly-contract,Columbus,43212,2021-02-15,phone,higher service frequency and low tolerance for delayed visits
+CUST-0355,Riverton Family Practice,office_service,biweekly-contract,Cincinnati,45202,2022-03-16,phone,higher service frequency and low tolerance for delayed visits
+CUST-0356,Northshore Supply Wholesale,office_service,biweekly-contract,Cincinnati,45202,2025-10-14,email,higher service frequency and low tolerance for delayed visits
+CUST-0357,Saltline Studio Aquatics Supply,office_service,strict-window,Columbus,43215,2025-02-26,phone,weekday-only access and fast escalation when windows slip
+CUST-0358,Oakline Property Group Lobby,office_service,stable-contract,Dayton,45429,2020-02-09,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0359,Summit Creative Office,office_service,stable-contract,Cincinnati,45202,2020-04-07,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0360,True Current Commercial Install,office_service,stable-contract,Cincinnati,45208,2026-01-22,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0361,Riverton Private Club,office_service,stable-contract,Louisville,40213,2020-06-07,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0362,Northshore Supply Livestock Reseller,office_service,property-manager,Columbus,43219,2026-01-06,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0363,Riverglass Wine Bar,office_service,strict-window,Dayton,45429,2025-09-06,phone,weekday-only access and fast escalation when windows slip
+CUST-0364,North Loop Restaurant Group,office_service,stable-contract,Cincinnati,45220,2023-12-21,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0365,Cedar Pediatrics Lobby,office_service,biweekly-contract,Columbus,43215,2021-10-18,phone,higher service frequency and low tolerance for delayed visits
+CUST-0366,Harbor Creative Office,office_service,biweekly-contract,Louisville,40213,2023-04-30,phone,higher service frequency and low tolerance for delayed visits
+CUST-0367,Harbor Coworking Lobby,office_service,stable-contract,Columbus,43212,2025-08-25,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0368,Steady Tide Wholesale,office_service,event-sensitive,Cincinnati,45242,2023-03-02,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0369,Juniper Family Practice,office_service,stable-contract,Dayton,45424,2022-12-07,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0370,Lumen Wine Bar,office_service,stable-contract,Columbus,43219,2020-03-21,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0371,Sunline Property Group Lobby,office_service,property-manager,Cincinnati,45208,2020-08-04,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0372,Coral District Dry Goods Distributor,office_service,strict-window,Cincinnati,45202,2021-07-12,email,weekday-only access and fast escalation when windows slip
+CUST-0373,Glasshouse Property Group Lobby,office_service,stable-contract,Cincinnati,45202,2021-04-28,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0374,Glasshouse Law Office,office_service,strict-window,Cincinnati,45220,2023-01-15,phone,weekday-only access and fast escalation when windows slip
+CUST-0375,Bridgehouse Property Group Lobby,office_service,property-manager,Cincinnati,45242,2023-10-25,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0376,Common Basin Dry Goods Distributor,office_service,strict-window,Columbus,43212,2020-05-14,email,weekday-only access and fast escalation when windows slip
+CUST-0377,Common Basin Install Partner,office_service,strict-window,Columbus,43215,2025-02-19,phone,weekday-only access and fast escalation when windows slip
+CUST-0378,Canopy Wine Bar,office_service,stable-contract,Cincinnati,45206,2025-02-09,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0379,Glasshouse Dental Lobby,office_service,stable-contract,Columbus,43215,2022-11-15,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0380,Common Basin Office Install Team,office_service,stable-contract,Cincinnati,45202,2022-03-15,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0381,Saltline Studio Dry Goods Distributor,office_service,strict-window,Columbus,43085,2026-01-26,email,weekday-only access and fast escalation when windows slip
+CUST-0382,Fern & Co Wine Bar,office_service,property-manager,Dayton,45429,2022-07-17,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0383,Riverglass Cardiology Office,office_service,hospitality-display,Louisville,40202,2024-10-11,phone,display quality matters on weekends and around guest reviews
+CUST-0384,Parkside Creative Office,office_service,stable-contract,Louisville,40202,2025-09-18,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0385,Fern & Co Law Office,office_service,event-sensitive,Cincinnati,45220,2023-02-17,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0386,True Current Livestock Reseller,office_service,hospitality-display,Cincinnati,45220,2021-02-08,email,display quality matters on weekends and around guest reviews
+CUST-0387,Westfield Design Studio Lobby,office_service,stable-contract,Dayton,45424,2022-07-03,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0388,Coral District Aquatics Supply,office_service,stable-contract,Dayton,45402,2023-07-01,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0389,Oakline Family Practice,office_service,hospitality-display,Cincinnati,45242,2023-12-10,email,display quality matters on weekends and around guest reviews
+CUST-0390,Riverglass Restaurant Group,office_service,strict-window,Columbus,43085,2020-08-01,phone,weekday-only access and fast escalation when windows slip
+CUST-0391,Belltower Cardiology Office,office_service,stable-contract,Columbus,43202,2024-09-26,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0392,Riverglass Dental Lobby,office_service,strict-window,Columbus,43219,2021-04-09,email,weekday-only access and fast escalation when windows slip
+CUST-0393,Blue Current Commercial Install,office_service,biweekly-contract,Louisville,40202,2021-06-07,email,higher service frequency and low tolerance for delayed visits
+CUST-0394,Northgate Dermatology Center,office_service,property-manager,Columbus,43212,2024-07-18,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0395,Saltline Studio Office Install Team,office_service,strict-window,Columbus,43212,2022-02-09,email,weekday-only access and fast escalation when windows slip
+CUST-0396,Blue Current Wholesale,office_service,stable-contract,Louisville,40222,2021-08-05,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0397,True Current Dry Goods Distributor,office_service,stable-contract,Columbus,43219,2023-12-15,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0398,Summit Family Practice,office_service,hospitality-display,Columbus,43202,2023-02-20,email,display quality matters on weekends and around guest reviews
+CUST-0399,Northshore Supply Commercial Install,office_service,strict-window,Dayton,45409,2023-02-24,phone,weekday-only access and fast escalation when windows slip
+CUST-0400,Riverglass Interiors Livestock Reseller,office_service,hospitality-display,Louisville,40213,2020-09-10,email,display quality matters on weekends and around guest reviews
+CUST-0401,Riverglass Interiors Commercial Install,office_service,property-manager,Dayton,45429,2022-09-09,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0402,Steady Tide Dry Goods Distributor,office_service,biweekly-contract,Dayton,45424,2024-04-27,phone,higher service frequency and low tolerance for delayed visits
+CUST-0403,Lumen Law Office,office_service,event-sensitive,Columbus,43212,2021-02-24,phone,tank appearance matters before events; emergency requests happen under deadline
+CUST-0404,Northgate Pediatrics Lobby,office_service,strict-window,Columbus,43202,2023-09-02,email,weekday-only access and fast escalation when windows slip
+CUST-0405,Parkside Coworking Lobby,office_service,stable-contract,Cincinnati,45208,2019-02-13,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0406,North Loop Cardiology Office,office_service,stable-contract,Louisville,40202,2020-05-14,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0407,Common Basin Livestock Reseller,office_service,biweekly-contract,Cincinnati,45206,2019-12-11,phone,higher service frequency and low tolerance for delayed visits
+CUST-0408,Summit Design Studio Lobby,office_service,biweekly-contract,Dayton,45409,2023-12-04,email,higher service frequency and low tolerance for delayed visits
+CUST-0409,Glasshouse Private Club,office_service,biweekly-contract,Dayton,45402,2022-04-11,email,higher service frequency and low tolerance for delayed visits
+CUST-0410,Riverglass Interiors Office Install Team,office_service,biweekly-contract,Columbus,43215,2021-03-20,email,higher service frequency and low tolerance for delayed visits
+CUST-0411,Glass Reef Office Install Team,office_service,event-sensitive,Dayton,45419,2020-08-17,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0412,Westfield Cardiology Office,office_service,property-manager,Columbus,43212,2019-06-28,email,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0413,Aqua Habitat Aquatics Supply,office_service,property-manager,Cincinnati,45220,2020-05-05,phone,one office manager coordinates multiple buildings and prefers clear handoffs
+CUST-0414,Glasshouse Family Practice,office_service,stable-contract,Louisville,40205,2023-08-21,phone,predictable maintenance cadence; reliability matters more than novelty
+CUST-0415,Harbor Surgery Center,office_service,stable-contract,Louisville,40222,2020-09-19,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0416,Bridgehouse Steakhouse,office_service,event-sensitive,Louisville,40206,2025-08-01,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0417,Belltower Hotel Atrium,office_service,strict-window,Columbus,43215,2021-03-23,phone,weekday-only access and fast escalation when windows slip
+CUST-0418,Canopy Property Group Lobby,office_service,biweekly-contract,Cincinnati,45202,2019-08-27,email,higher service frequency and low tolerance for delayed visits
+CUST-0419,Common Basin Aquatics Supply,office_service,biweekly-contract,Louisville,40205,2019-02-22,email,higher service frequency and low tolerance for delayed visits
+CUST-0420,Bridgehouse Law Office,office_service,stable-contract,Cincinnati,45202,2021-03-08,email,predictable maintenance cadence; reliability matters more than novelty
+CUST-0421,Aqua Habitat Dry Goods Distributor,office_service,event-sensitive,Columbus,43212,2021-03-13,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0422,Bluebird Wine Bar,office_service,event-sensitive,Dayton,45409,2019-09-24,email,tank appearance matters before events; emergency requests happen under deadline
+CUST-0423,Summit Wine Bar,wholesale,install-partner,Cincinnati,45220,2020-03-22,phone,stages office installs and cares about reliable service follow-through
+CUST-0424,Juniper Hotel Atrium,wholesale,install-partner,Columbus,43085,2021-11-09,email,stages office installs and cares about reliable service follow-through
+CUST-0425,Riverglass Steakhouse,wholesale,margin-sensitive,Dayton,45402,2019-01-10,email,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0426,Oakline Hotel Atrium,wholesale,service-pass-through,Columbus,43212,2022-11-22,phone,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0427,Lumen Pediatrics Lobby,wholesale,margin-sensitive,Columbus,43212,2026-01-03,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0428,Steady Tide Commercial Install,wholesale,livestock-reseller,Cincinnati,45220,2019-12-30,email,resells hardy fish locally; wants clean availability answers quickly
+CUST-0429,Blue Current Install Partner,wholesale,install-partner,Columbus,43202,2020-09-25,email,stages office installs and cares about reliable service follow-through
+CUST-0430,Riverton Hotel Atrium,wholesale,install-partner,Louisville,40222,2023-11-05,phone,stages office installs and cares about reliable service follow-through
+CUST-0431,Northshore Supply Dry Goods Distributor,wholesale,livestock-reseller,Cincinnati,45242,2021-07-07,phone,resells hardy fish locally; wants clean availability answers quickly
+CUST-0432,Steady Tide Livestock Reseller,wholesale,dry-goods-bulk,Louisville,40206,2022-09-02,email,prefers predictable purchasing and consolidated deliveries
+CUST-0433,Juniper Surgery Center,wholesale,dry-goods-bulk,Dayton,45409,2020-10-04,email,prefers predictable purchasing and consolidated deliveries
+CUST-0434,Common Basin Commercial Install,wholesale,install-partner,Cincinnati,45220,2019-01-26,email,stages office installs and cares about reliable service follow-through
+CUST-0435,Riverton Dermatology Center,wholesale,install-partner,Columbus,43202,2025-08-22,email,stages office installs and cares about reliable service follow-through
+CUST-0436,True Current Aquatics Supply,wholesale,dry-goods-bulk,Cincinnati,45242,2025-01-31,phone,prefers predictable purchasing and consolidated deliveries
+CUST-0437,Glasshouse Creative Office,wholesale,dry-goods-bulk,Louisville,40222,2020-01-31,email,prefers predictable purchasing and consolidated deliveries
+CUST-0438,Westfield Property Group Lobby,wholesale,livestock-reseller,Dayton,45429,2021-06-02,email,resells hardy fish locally; wants clean availability answers quickly
+CUST-0439,North Loop Family Practice,wholesale,install-partner,Columbus,43212,2020-02-01,phone,stages office installs and cares about reliable service follow-through
+CUST-0440,Riverton Restaurant Group,wholesale,install-partner,Dayton,45402,2020-05-16,email,stages office installs and cares about reliable service follow-through
+CUST-0441,Canopy Pediatrics Lobby,wholesale,service-pass-through,Louisville,40202,2020-02-10,email,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0442,Juniper Dental Lobby,wholesale,margin-sensitive,Cincinnati,45242,2024-09-25,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0443,Riverglass Interiors Aquatics Supply,wholesale,livestock-reseller,Dayton,45419,2022-01-24,email,resells hardy fish locally; wants clean availability answers quickly
+CUST-0444,Bluebird Family Practice,wholesale,margin-sensitive,Dayton,45419,2020-06-14,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0445,Glasshouse Surgery Center,wholesale,margin-sensitive,Louisville,40222,2019-02-09,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0446,Canopy Design Studio Lobby,wholesale,install-partner,Louisville,40213,2021-01-03,email,stages office installs and cares about reliable service follow-through
+CUST-0447,Sunline Wine Bar,wholesale,livestock-reseller,Columbus,43085,2022-09-08,phone,resells hardy fish locally; wants clean availability answers quickly
+CUST-0448,Harbor Law Office,wholesale,install-partner,Columbus,43202,2020-07-12,phone,stages office installs and cares about reliable service follow-through
+CUST-0449,Coral District Install Partner,wholesale,livestock-reseller,Louisville,40222,2024-01-20,phone,resells hardy fish locally; wants clean availability answers quickly
+CUST-0450,Northgate Hotel Atrium,wholesale,dry-goods-bulk,Columbus,43219,2022-05-18,phone,prefers predictable purchasing and consolidated deliveries
+CUST-0451,Glass Reef Wholesale,wholesale,dry-goods-bulk,Dayton,45429,2025-11-22,email,prefers predictable purchasing and consolidated deliveries
+CUST-0452,Lumen Surgery Center,wholesale,margin-sensitive,Dayton,45419,2021-02-14,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0453,Sunline Private Club,wholesale,margin-sensitive,Cincinnati,45202,2021-02-20,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0454,True Current Office Install Team,wholesale,service-pass-through,Columbus,43212,2023-01-06,email,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0455,Glasshouse Coworking Lobby,wholesale,install-partner,Cincinnati,45202,2025-08-02,email,stages office installs and cares about reliable service follow-through
+CUST-0456,Oakline Law Office,wholesale,dry-goods-bulk,Columbus,43085,2020-11-26,email,prefers predictable purchasing and consolidated deliveries
+CUST-0457,Maple Dental Lobby,wholesale,margin-sensitive,Cincinnati,45202,2019-06-30,phone,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0458,Lumen Design Studio Lobby,wholesale,service-pass-through,Columbus,43202,2026-01-09,email,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0459,Belltower Pediatrics Lobby,wholesale,install-partner,Louisville,40222,2019-03-03,email,stages office installs and cares about reliable service follow-through
+CUST-0460,Belltower Design Studio Lobby,wholesale,livestock-reseller,Cincinnati,45220,2020-12-02,email,resells hardy fish locally; wants clean availability answers quickly
+CUST-0461,Harbor Dental Lobby,wholesale,dry-goods-bulk,Louisville,40206,2021-07-01,phone,prefers predictable purchasing and consolidated deliveries
+CUST-0462,Aqua Habitat Commercial Install,wholesale,service-pass-through,Columbus,43215,2022-01-08,phone,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0463,Westfield Steakhouse,wholesale,service-pass-through,Columbus,43202,2021-09-10,phone,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0464,Steady Tide Install Partner,wholesale,dry-goods-bulk,Columbus,43212,2025-04-10,email,prefers predictable purchasing and consolidated deliveries
+CUST-0465,Lumen Restaurant Group,wholesale,dry-goods-bulk,Cincinnati,45208,2025-01-09,email,prefers predictable purchasing and consolidated deliveries
+CUST-0466,Maple Property Group Lobby,wholesale,margin-sensitive,Columbus,43085,2025-08-09,email,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0467,Oakline Dental Lobby,wholesale,dry-goods-bulk,Cincinnati,45220,2025-01-02,email,prefers predictable purchasing and consolidated deliveries
+CUST-0468,Sunline Dermatology Center,wholesale,install-partner,Cincinnati,45202,2025-09-19,email,stages office installs and cares about reliable service follow-through
+CUST-0469,Cedar Creative Office,wholesale,service-pass-through,Columbus,43202,2026-01-10,phone,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0470,Juniper Law Office,wholesale,livestock-reseller,Louisville,40222,2020-05-11,phone,resells hardy fish locally; wants clean availability answers quickly
+CUST-0471,Riverton Property Group Lobby,wholesale,service-pass-through,Columbus,43219,2023-08-12,phone,uses Goldfish Express for white-label maintenance and rescue calls
+CUST-0472,Riverton Cardiology Office,wholesale,dry-goods-bulk,Cincinnati,45206,2021-01-25,email,prefers predictable purchasing and consolidated deliveries
+CUST-0473,Riverton Design Studio Lobby,wholesale,install-partner,Columbus,43212,2022-04-08,email,stages office installs and cares about reliable service follow-through
+CUST-0474,Glass Reef Aquatics Supply,wholesale,livestock-reseller,Dayton,45409,2019-11-24,email,resells hardy fish locally; wants clean availability answers quickly
+CUST-0475,Belltower Wine Bar,wholesale,install-partner,Cincinnati,45206,2019-06-16,phone,stages office installs and cares about reliable service follow-through
+CUST-0476,Sunline Steakhouse,wholesale,margin-sensitive,Louisville,40213,2022-11-06,email,bulk dry goods and hardy livestock; larger revenue but tighter margins
+CUST-0477,Bluebird Dental Lobby,wholesale,dry-goods-bulk,Cincinnati,45208,2021-01-30,email,prefers predictable purchasing and consolidated deliveries
+CUST-0478,Canopy Cardiology Office,wholesale,install-partner,Dayton,45424,2023-05-24,email,stages office installs and cares about reliable service follow-through
+CUST-0479,Maple Law Office,wholesale,dry-goods-bulk,Cincinnati,45220,2025-02-24,phone,prefers predictable purchasing and consolidated deliveries
+CUST-0480,Bluebird Surgery Center,wholesale,dry-goods-bulk,Cincinnati,45202,2021-06-09,phone,prefers predictable purchasing and consolidated deliveries
