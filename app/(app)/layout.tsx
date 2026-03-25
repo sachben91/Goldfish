@@ -1,6 +1,11 @@
-// Auth check disabled for testing — re-enable before going live.
 export const dynamic = "force-dynamic";
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
+import { createClient } from "@/lib/supabase/server";
+import { redirect } from "next/navigation";
+
+export default async function AppLayout({ children }: { children: React.ReactNode }) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
   return <>{children}</>;
 }

@@ -8,25 +8,26 @@ import { createClient } from "@/lib/supabase/server";
 import { VisitCard } from "@/components/schedule/VisitCard";
 import { SERVICE_TYPE_LABELS, isOverdue } from "@/lib/schedule";
 import type { ScheduledVisit } from "@/types/database";
-
-// TESTING MODE: auth disabled, defaulting to first technician in the database.
-// Re-enable auth before going live.
+import { redirect } from "next/navigation";
 
 export default async function SchedulePage() {
   const supabase = await createClient();
 
-  // Use the first technician for demo purposes
+  const { data: { user } } = await supabase.auth.getUser();
+  if (!user) redirect("/login");
+
+  // Match the logged-in user to a technician by email.
+  // Falls back to showing all visits if no match (e.g. during initial testing).
   const { data: technician } = await supabase
     .from("technicians")
     .select("id, name")
-    .limit(1)
-    .single();
+    .eq("email", user!.email)
+    .maybeSingle();
 
-  // Show all upcoming visits across the next 30 days so there's something to see
   const today = new Date().toISOString().split("T")[0];
-  const oneWeekOut = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
+  const oneWeekOut = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0];
 
-  const { data: visits } = await supabase
+  const visitsQuery = supabase
     .from("visit_schedule")
     .select(`
       *,
@@ -36,8 +37,12 @@ export default async function SchedulePage() {
     .eq("status", "scheduled")
     .gte("scheduled_date", today)
     .lte("scheduled_date", oneWeekOut)
-    .order("scheduled_date", { ascending: true })
-    .limit(20);
+    .order("scheduled_date", { ascending: true });
+
+  // If we matched a technician, filter to their visits only
+  if (technician) visitsQuery.eq("technician_id", technician.id);
+
+  const { data: visits } = await visitsQuery;
 
   const todayVisits = (visits ?? []).filter((v) => v.scheduled_date === today) as ScheduledVisit[];
   const upcomingVisits = (visits ?? []).filter((v) => v.scheduled_date !== today) as ScheduledVisit[];

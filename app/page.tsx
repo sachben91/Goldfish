@@ -1,6 +1,11 @@
-// Redirect to schedule for testing — auth disabled temporarily.
-import { redirect } from "next/navigation";
+export const dynamic = "force-dynamic";
 
-export default function RootPage() {
-  redirect("/schedule");
+import { redirect } from "next/navigation";
+import { createClient } from "@/lib/supabase/server";
+
+export default async function RootPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  if (user) redirect("/schedule");
+  else redirect("/login");
 }

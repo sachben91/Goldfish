@@ -1,5 +1,5 @@
-// Login screen — technicians enter their phone number and receive an OTP via SMS.
-// No password to remember. Session is stored in browser cookies for 7 days.
+// Login screen — technicians enter their email and receive a 6-digit OTP.
+// No password to remember. Works out of the box with Supabase's email provider.
 
 "use client";
 
@@ -7,27 +7,13 @@ import { useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 
 export default function LoginPage() {
-  const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-  const [step, setStep] = useState<"phone" | "otp">("phone");
+  const [step, setStep] = useState<"email" | "otp">("email");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const supabase = createClient();
-
-  async function signInWithEmail(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError(null);
-    const { error } = await supabase.auth.signInWithOtp({
-      email: email.trim(),
-      options: { shouldCreateUser: true },
-    });
-    setLoading(false);
-    if (error) setError(error.message);
-    else setStep("otp");
-  }
 
   async function requestOtp(e: React.FormEvent) {
     e.preventDefault();
@@ -35,15 +21,13 @@ export default function LoginPage() {
     setError(null);
 
     const { error } = await supabase.auth.signInWithOtp({
-      phone: phone.trim(),
+      email: email.trim(),
+      options: { shouldCreateUser: true },
     });
 
     setLoading(false);
-    if (error) {
-      setError(error.message);
-    } else {
-      setStep("otp");
-    }
+    if (error) setError(error.message);
+    else setStep("otp");
   }
 
   async function verifyOtp(e: React.FormEvent) {
@@ -52,18 +36,14 @@ export default function LoginPage() {
     setError(null);
 
     const { error } = await supabase.auth.verifyOtp({
-      phone: phone.trim(),
+      email: email.trim(),
       token: otp.trim(),
-      type: "sms",
+      type: "email",
     });
 
     setLoading(false);
-    if (error) {
-      setError(error.message);
-    } else {
-      // Auth state change will redirect via middleware
-      window.location.href = "/";
-    }
+    if (error) setError(error.message);
+    else window.location.href = "/schedule";
   }
 
   return (
@@ -77,18 +57,18 @@ export default function LoginPage() {
           <p className="text-slate-500 mt-1 text-sm">Technician Portal</p>
         </div>
 
-        {step === "phone" ? (
+        {step === "email" ? (
           <form onSubmit={requestOtp} className="space-y-4">
             <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-1">
-                Phone number
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-1">
+                Email address
               </label>
               <input
-                id="phone"
-                type="tel"
-                placeholder="+1 555 000 0000"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                id="email"
+                type="email"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full border border-slate-300 rounded-lg px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                 required
               />
@@ -101,27 +81,11 @@ export default function LoginPage() {
             >
               {loading ? "Sending code…" : "Send code"}
             </button>
-            <div className="relative my-2">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
-              </div>
-              <div className="relative flex justify-center">
-                <span className="bg-white px-3 text-xs text-slate-400">or</span>
-              </div>
-            </div>
-            <button
-              type="button"
-              onClick={signInWithEmail}
-              disabled={loading}
-              className="w-full bg-slate-100 text-slate-700 py-3 rounded-lg text-base font-medium disabled:opacity-50"
-            >
-              Continue as demo
-            </button>
           </form>
         ) : (
           <form onSubmit={verifyOtp} className="space-y-4">
             <p className="text-slate-600 text-sm text-center">
-              Enter the code sent to <span className="font-medium">{phone}</span>
+              Enter the 6-digit code sent to <span className="font-medium">{email}</span>
             </p>
             <input
               type="text"
@@ -143,10 +107,10 @@ export default function LoginPage() {
             </button>
             <button
               type="button"
-              onClick={() => setStep("phone")}
+              onClick={() => setStep("email")}
               className="w-full text-slate-500 text-sm py-2"
             >
-              Use a different number
+              Use a different email
             </button>
           </form>
         )}
