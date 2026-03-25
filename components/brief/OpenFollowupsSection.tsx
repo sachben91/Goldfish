@@ -81,7 +81,7 @@ export function OpenFollowupsSection({ followups: initialFollowups, visitId }: O
                       disabled={resolving === followup.id}
                       className="text-xs text-blue-600 font-medium py-1 px-2 rounded border border-blue-200 shrink-0 disabled:opacity-50"
                     >
-                      {resolving === followup.id ? "…" : "Resolved"}
+                      {resolving === followup.id ? "…" : "Mark resolved"}
                     </button>
                   </div>
                 </div>
