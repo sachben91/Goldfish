@@ -15,6 +15,15 @@ export default function LoginPage() {
 
   const supabase = createClient();
 
+  async function signInAnonymously() {
+    setLoading(true);
+    setError(null);
+    const { error } = await supabase.auth.signInAnonymously();
+    setLoading(false);
+    if (error) setError(error.message);
+    else window.location.href = "/schedule";
+  }
+
   async function requestOtp(e: React.FormEvent) {
     e.preventDefault();
     setLoading(true);
@@ -80,6 +89,22 @@ export default function LoginPage() {
               className="w-full bg-blue-600 text-white py-3 rounded-lg text-base font-medium disabled:opacity-50"
             >
               {loading ? "Sending code…" : "Send code"}
+            </button>
+            <div className="relative my-2">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-slate-200" />
+              </div>
+              <div className="relative flex justify-center">
+                <span className="bg-white px-3 text-xs text-slate-400">or</span>
+              </div>
+            </div>
+            <button
+              type="button"
+              onClick={signInAnonymously}
+              disabled={loading}
+              className="w-full bg-slate-100 text-slate-700 py-3 rounded-lg text-base font-medium disabled:opacity-50"
+            >
+              Continue as demo
             </button>
           </form>
         ) : (
