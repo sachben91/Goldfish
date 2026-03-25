@@ -2,15 +2,5 @@
   "buildCommand": "npm run build",
   "installCommand": "npm install",
   "framework": "nextjs",
-  "regions": ["iad1"],
-  "env": {
-    "NEXT_PUBLIC_SUPABASE_URL": "@goldfish-supabase-url",
-    "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@goldfish-supabase-anon-key"
-  },
-  "build": {
-    "env": {
-      "NEXT_PUBLIC_SUPABASE_URL": "@goldfish-supabase-url",
-      "NEXT_PUBLIC_SUPABASE_ANON_KEY": "@goldfish-supabase-anon-key"
-    }
-  }
+  "regions": ["iad1"]
 }
