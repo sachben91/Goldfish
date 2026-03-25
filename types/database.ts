@@ -133,6 +133,7 @@ export interface UpsellRecommendation {
   sku: string;
   product_name: string;
   category: Category;
-  reason: string;   // human-readable explanation shown to the technician
+  reason: string;   // internal: why the engine surfaced this recommendation
+  pitch: string;    // customer-facing: what the technician should say
   unit_price: number | null;
 }

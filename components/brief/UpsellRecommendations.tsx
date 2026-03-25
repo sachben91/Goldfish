@@ -55,8 +55,8 @@ export function UpsellRecommendations({ recommendations }: UpsellRecommendations
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-slate-900 text-sm">{rec.product_name}</p>
-                    <p className="text-xs text-blue-700 mt-0.5">{rec.reason}</p>
-                    <p className="text-xs text-slate-400 mt-0.5">{rec.sku}</p>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">{rec.pitch}</p>
+                    <p className="text-xs text-slate-400 mt-1">{rec.sku}</p>
                   </div>
                 </div>
               </div>
