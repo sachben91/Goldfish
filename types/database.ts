@@ -141,7 +141,7 @@ export interface ServiceVisit {
   logged_upsell_pitched: boolean | null;
   logged_upsell_sku: string | null;
   logged_notes: string | null;
-  // Structured outcome fields — schema migration required to add these columns
+  // Structured outcome fields — added by supabase/migrations/002_service_visit_log_fields.sql
   logged_work_completed: string | null;
   logged_resolution_status: ResolutionStatus | null;
   logged_next_step: string | null;
