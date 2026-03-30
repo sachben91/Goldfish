@@ -43,33 +43,37 @@ The upsell angle came from the same logic. If a customer's top recurring issue i
 ```
 / (root)
 ├── /login               — email OTP or anonymous demo login
-└── /schedule            — today's visits + this week, sorted by urgency
-    └── /visit/[id]/brief — pre-visit brief for a specific account
-        └── /visit/[id]/log — post-visit log form (or read-only view if already logged)
+├── /schedule            — today's visits + this week, sorted by urgency
+│   └── /visit/[id]/brief — pre-visit brief for a specific account
+│       └── /visit/[id]/log — post-visit log form (or read-only view if already logged)
+├── /insights            — recurring issue patterns across all accounts (ops team)
+└── /demo                — live API demo: compatibility check + delivery windows
 ```
 
 ### The brief screen
 
-This is the core of the app. It runs five database queries in parallel (so the page loads fast even on a weak cell signal) and renders six sections in priority order:
+This is the core of the app. It runs five database queries in parallel (so the page loads fast even on a weak cell signal) and renders sections in priority order:
 
-1. **Account snapshot** — customer type, segment, city. Access notes are shown first in a yellow callout because a technician who can't get into the building has wasted the trip before it started.
-2. **Last visit** — relative date ("23 days ago"), who did it, what issue was found, severity badge, followup status.
-3. **Recurring issues** — issues that have appeared across multiple past visits, sorted by frequency. Collapsed by default with the top issue previewed.
-4. **Open followups** — unresolved items from previous visits. Red border if any exist. Each can be marked resolved in-place without leaving the screen.
-5. **Tank inventory** — what the customer has ordered in the last 12 months, grouped by category. Tells the technician what's in the tank without asking.
-6. **Recommend today** — up to 3 product recommendations with a customer-facing talking point for each.
+1. **Today's job** — always-visible banner showing the visit category (monthly maintenance, biweekly, emergency rescue) and any open follow-up items that need attention on this visit.
+2. **Account snapshot** — customer type, segment, city. Access notes shown first in a yellow callout — a technician who can't get in has wasted the trip before it started.
+3. **Last visit** — relative date ("23 days ago"), who did it, what issue was found, severity badge, followup status.
+4. **Recurring issues** — issues appearing across multiple past visits, sorted by frequency. Collapsed by default with the top issue previewed.
+5. **Open followups** — unresolved items from previous visits. Red border if any exist. Each can be marked resolved in-place without leaving the screen.
+6. **Tank inventory** — what the customer has ordered in the last 12 months, grouped by category. Tells the technician what's in the tank without asking.
+7. **Recommend today** — up to 3 product recommendations with a customer-facing talking point for each.
 
-### The upsell engine (`lib/upsell.ts`)
+### The visit log
 
-Recommendations are ranked in two passes:
+After the visit, the technician fills in a structured log (not a free-text field):
 
-**Pass 1 — issue-informed.** A lookup table maps known recurring issue descriptions to the SKU that would prevent or solve them. If the customer has a recurring "top-off reservoir running dry" issue, the engine recommends the auto top-off unit and generates a pitch the technician can say directly: *"An auto top-off unit handles evaporation automatically — no more salinity swings between visits."*
+- What work was completed
+- Resolution status: resolved / ongoing / escalated / needs_part
+- Next step and who owns it (tech, customer, or office)
+- Whether an ops flag should be raised (water quality, equipment, livestock, other), with a note and SKU if relevant
 
-**Pass 2 — upsell graph.** The catalog includes an `upsell_relationships` field on each SKU — an array of complementary products. If a customer has a coral SPS pack, the engine recommends the monthly maintenance service that coral typically needs. This graph is defined at the product level and requires no per-customer configuration.
+When a visit is logged, the schedule card turns green with a "✓ Logged" badge. Tapping it again shows the read-only log.
 
-Filters applied before any recommendation surfaces:
-- SKUs the customer already owns (last 12 months of orders) are excluded
-- Office accounts (`office_service` customer type) are never shown fish or coral — they have display tanks maintained for aesthetics, not hobbyist livestock
+The open followups view reads `logged_work_completed` first, falling back to the older `issue_found` field — so both old and new visit records display correctly.
 
 ### The visit loop
 
@@ -77,15 +81,21 @@ Filters applied before any recommendation surfaces:
 visit_schedule (status: scheduled)
   → technician reads brief
   → technician logs visit
-  → service_visits (new row inserted, logged_* fields populated)
+  → service_visits (new row, logged_* fields populated)
   → visit_schedule (status: completed, visit_id → service_visits.id)
 ```
 
-When a visit is logged, the schedule card turns green with a "✓ Logged" badge. Tapping it again shows the read-only log — what was found, whether a followup was raised, what was recommended.
+### The upsell engine (`lib/upsell.ts`)
+
+Recommendations are ranked in two passes:
+
+**Pass 1 — issue-informed.** A lookup table maps known recurring issue descriptions to the SKU that would prevent or solve them. If a customer has a recurring "top-off reservoir running dry" issue, the engine recommends the auto top-off unit with a ready-made pitch.
+
+**Pass 2 — upsell graph.** The catalog includes an `upsell_relationships` field on each SKU — an array of complementary products. If a customer has a coral SPS pack, the engine recommends the monthly maintenance service that coral typically needs.
+
+Filters: already-owned SKUs are excluded; office accounts never see fish or coral.
 
 ### Issue severity (`lib/issues.ts`)
-
-Issues found on past visits are classified into three tiers:
 
 | Severity | Example | Why |
 |----------|---------|-----|
@@ -93,30 +103,111 @@ Issues found on past visits are classified into three tiers:
 | Moderate | Filter sock clogged | Degrades water quality over days |
 | Routine | Feeding schedule drifted between staff | Manageable, but recurring |
 
-Unknown issues default to routine. The severity drives the colour of the badge shown on past visits in the brief.
+Unknown issues default to routine. Severity drives the colour of badges on past visits in the brief.
+
+---
+
+## The compatibility engine (`lib/compatibility.ts`)
+
+Answers one question at point of sale: can these SKUs be safely ordered together given this customer's tank?
+
+Returns one of three outcomes:
+
+| Result | Meaning |
+|--------|---------|
+| `ok: true` | Safe to proceed |
+| `ok: "friction"` | Concern flagged — customer must acknowledge before completing order. Includes a customer-facing message and a sales rep talking point. |
+| `ok: "review"` | Held for livestock team review. Customer is told why and what happens next. |
+
+Rules that can fire:
+
+- **Office block** — office display accounts ordering live fish or coral
+- **Shrimp incompatibility** — predatory fish (aggressive-non-reef, semi-aggressive-predator) in same cart as ornamental shrimp, or either in the customer's recent order history
+- **Mature tank requirement** — species that need an established system (BTA, SPS coral) ordered for a tank under 12 months old
+- **Manual review hold** — trigger fish (beginner segments go straight to review; others self-attest via friction), hawkfish, anemones
+- **Tank size minimum** — species with a gallon minimum ordered for a smaller tank on record
+
+Every rule is configurable via `lib/operator-config.ts` — rules can be disabled, and zone-level overrides are supported.
+
+**API:** `POST /api/compatibility/check` — fetches the full catalog from Supabase, runs the check, returns the result. Callers only need to send cart SKUs and customer context.
+
+---
+
+## The delivery window engine (`lib/delivery-windows.ts`)
+
+Answers one question at point of sale: can we reliably fulfil same-day delivery for this zone, on this date, under current conditions?
+
+Two independent signals block same-day delivery:
+
+1. **Temperature** — south-belt has a 27% livestock replacement rate year-round; on warm or high-heat days it spikes. Same-day live delivery to heat-sensitive zones is blocked when the temperature flag is `warm` or `high_heat`. This is structural — no override is possible for heat blocks.
+
+2. **Route capacity** — each zone has a safe stop limit derived from historical data. Adding a same-day stop past that limit causes route drift and a 54% replacement rate on late deliveries vs 0% on-time. Capacity blocks can be overridden by a rep using the override checklist (customer availability, cold storage, prior experience, etc.).
+
+Returns either a list of available time windows (`10:00–12:00`, `12:00–14:00`, `15:00–17:00`) or a block with reason, message, and next available date.
+
+**API:** `POST /api/delivery-windows/check` — pure function, no database call needed. Pass zone, date, stop count, temperature flag, and optional current time.
+
+---
+
+## The insights cron (`/insights`)
+
+A nightly job (02:00 UTC via Vercel cron) runs `deriveRecurringPatterns` across all customer accounts and writes results to the `pattern_alerts` table.
+
+The algorithm flags any issue that appears 3+ times in a 180-day window for a single customer, and suggests an ops action (schedule a dedicated repair visit, order a replacement part, escalate to the livestock team, etc.).
+
+The `/insights` page shows:
+- Last run time, accounts processed, patterns found
+- All current alerts grouped by customer, with occurrence count, last seen date, and the suggested ops action
+
+A "Run now" button triggers the same job on demand for authenticated users — useful for demos and for checking the output after new visit data is entered.
+
+**Tables:** `pattern_alerts` (current alert set, replaced on each run), `cron_runs` (run history with status and counts).
+
+---
+
+## The demo page (`/demo`)
+
+A live API sandbox with two panels. Click a preset scenario to call the API and see the response.
+
+**Compatibility scenarios:**
+- Trigger fish + cleaner shrimp in same cart → friction (predator/prey)
+- Bubble Tip Anemone in a 6-month-old tank → friction (mature tank requirement)
+- Office account ordering coral → friction (office block)
+- Beginner segment ordering a trigger fish → review hold
+- Yellow tang for a mature 100g tank → clear
+
+**Delivery window scenarios:**
+- South-belt on a high-heat day → heat block
+- Downtown with 4 stops already booked → capacity block
+- Order placed at 15:30 when all cutoffs have passed → no windows remaining
+- North-river, stable temperature, 1 stop, 8am → available (all three windows)
+
+Each result shows the colour-coded outcome, the customer-facing message, and (for friction) the rep talking point. A collapsible section shows the raw request payload.
 
 ---
 
 ## Running locally
 
 ```bash
-# Install dependencies
 npm install
 
-# Add environment variables
 cp .env.local.example .env.local
-# Fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+# Fill in NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_ANON_KEY, SUPABASE_SERVICE_ROLE_KEY
 
-# Seed the database (requires SUPABASE_SERVICE_ROLE_KEY in .env.local)
-npm run seed
+npm run seed   # seeds all five CSV datasets
 
-# Start the dev server
-npm run dev
+npm run dev    # http://localhost:3000
 ```
 
 ### Database setup
 
-Run `supabase/schema.sql` in the Supabase SQL editor before seeding. The schema creates six tables, two views, and the RLS policies that control who can read what.
+Run migrations in order before seeding:
+
+```bash
+npx supabase db push
+```
+
+Migrations live in `supabase/migrations/`. They add the structured visit log columns, fix the `open_followups` view to coalesce old and new field names, and create the `pattern_alerts` and `cron_runs` tables.
 
 Anonymous sign-ins must be enabled in your Supabase project under Authentication → Sign In Methods.
 
@@ -128,20 +219,17 @@ Anonymous sign-ins must be enabled in your Supabase project under Authentication
 npm test
 ```
 
-17 unit tests covering the two pieces of pure business logic:
+Unit tests covering the pure business logic in `lib/`:
 
-**`lib/upsell.test.ts`** — the recommendation engine:
-- Already-owned SKUs are excluded
-- Office accounts never receive fish or coral recommendations
-- Issue-informed recommendations rank above graph-based ones
-- Max 3 recommendations enforced
-- Unknown SKUs in the upsell graph don't crash the engine
-- Every recommendation includes a non-empty pitch string
-
-**`lib/issues.test.ts`** — the severity classifier:
-- Known issues map to the correct severity tier
-- Unknown issues default to routine
-- Input is normalised (case-insensitive, whitespace trimmed)
+| File | What's tested |
+|------|---------------|
+| `upsell.test.ts` | Already-owned SKU exclusion, office account filtering, issue-informed ranking, 3-recommendation cap, empty graph edge cases |
+| `issues.test.ts` | Known issue severity mapping, unknown issue default, case/whitespace normalisation |
+| `compatibility.test.ts` | All six rules — office block, shrimp incompatibility (cart + inventory), mature tank, manual review (trigger/hawkfish/BTA), tank size minimum; operator config overrides; segment tier routing |
+| `delivery-windows.test.ts` | Heat block, capacity block, cutoff filtering, next-weekday calculation, weekend skip logic, operator config overrides |
+| `ops-queue.test.ts` | 3+ occurrence threshold, 180-day window, suggested action mapping, deduplication |
+| `review-queue.test.ts` | Review queue logic |
+| `knowledge-capture.test.ts` | Knowledge capture logic |
 
 ---
 
@@ -149,10 +237,10 @@ npm test
 
 | Layer | Choice | Why |
 |-------|--------|-----|
-| Framework | Next.js 16 (App Router) | Server components fetch data in parallel before the page renders — important for weak connections |
-| Database + Auth | Supabase | Postgres with row-level security, email OTP and anonymous auth out of the box |
+| Framework | Next.js 16 (App Router) | Server components fetch data in parallel before the page renders |
+| Database + Auth | Supabase | Postgres with RLS, email OTP and anonymous auth out of the box |
 | Styling | Tailwind CSS | Fast to write, readable in code review |
-| Deployment | Vercel | Zero-config deploy from GitHub |
+| Deployment | Vercel | Zero-config deploy from GitHub, cron jobs via `vercel.json` |
 | Tests | Vitest | Fast, TypeScript-native, no config needed for pure function tests |
 
 ---
@@ -161,24 +249,42 @@ npm test
 
 ```
 app/
-  (auth)/login/         — login screen
-  (app)/schedule/       — today's and this week's visits
-  (app)/visit/[id]/
-    brief/              — pre-visit brief (server component, 5 parallel queries)
-    log/                — post-visit log (server + client)
+  (auth)/login/              — login screen (email OTP + anonymous demo)
+  (app)/
+    schedule/                — today's and this week's visits
+    visit/[id]/
+      brief/                 — pre-visit brief (server component, parallel queries)
+      log/                   — post-visit log form or read-only view
+    insights/                — recurring issue patterns (ops team view)
+    demo/                    — live API sandbox
+
+app/api/
+  compatibility/check/       — POST: runs compatibility engine against catalog
+  delivery-windows/check/    — POST: runs delivery window check (no DB)
+  insights/run/              — POST: manual insights trigger (session auth)
+  cron/insights/             — GET: nightly cron (CRON_SECRET auth)
+  orders/                    — order history endpoints
 
 components/
-  schedule/VisitCard    — visit card with logged/emergency/overdue states
-  brief/                — six sections of the pre-visit brief
-  log/VisitLogForm      — editable form or read-only view
+  schedule/VisitCard         — visit card with logged/emergency/overdue states
+  brief/                     — seven sections of the pre-visit brief
+  log/VisitLogForm           — structured log form or read-only view
 
 lib/
-  upsell.ts             — recommendation engine
-  issues.ts             — severity classification
-  schedule.ts           — visit frequency rules and date helpers
-  segments.ts           — customer segment display labels
+  compatibility.ts           — compatibility check engine
+  delivery-windows.ts        — delivery window engine + override checklist
+  upsell.ts                  — recommendation engine
+  issues.ts                  — severity classification
+  ops-queue.ts               — recurring pattern detection
+  operator-config.ts         — feature flags and per-zone config
+  schedule.ts                — visit frequency rules and date helpers
+  segments.ts                — customer segment display labels
 
-types/database.ts       — TypeScript interfaces mirroring the schema
-supabase/schema.sql     — full database schema with RLS policies
-scripts/seed.ts         — seeds all five CSV datasets into Supabase
+supabase/
+  migrations/                — schema migrations (run in order via supabase db push)
+  schema.sql                 — full schema with RLS policies
+
+scripts/seed.ts              — seeds all five CSV datasets into Supabase
+types/database.ts            — TypeScript interfaces mirroring the schema
+vercel.json                  — cron schedule (nightly insights at 02:00 UTC)
 ```
