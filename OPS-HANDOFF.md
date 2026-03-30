@@ -33,6 +33,32 @@ The `/ops` skill is already in the repo — no separate installation needed. Onc
 
 ---
 
+## Two problems to know about before you start changing rules
+
+### The efficiency-thoroughness trade-off (ETTO)
+
+The brief and the log form make technicians faster. That's the point. But faster creates a hidden risk: a tech who trusts the brief completely may stop asking questions they used to ask in person. The brief only shows what's in the data — it cannot show what's missing.
+
+The same applies to the log form. Structured fields are quicker to fill in than a notes box, but they constrain what gets captured. If something happens on a visit that doesn't fit the available categories, it either gets forced into the wrong one or dropped entirely. Over time, the data reflects the form rather than reality.
+
+**What this means for ops:** If you notice that visit logs are starting to look uniform in a way that doesn't match what techs are actually telling you verbally, the form is probably flattening the signal. The fix is to add a field or loosen a category — not to ask techs to write more.
+
+---
+
+### Leaky boundaries
+
+Several rules in this system encode business judgment that should belong to people, not code. The compatibility messages, the pattern action suggestions, the issue-to-SKU mappings — these are policy decisions that will need to change as the business learns. Right now changing them means a code edit and a redeploy.
+
+The deeper version of this problem: the people who should own these rules (the livestock team, route ops, account managers) are currently one step removed from them. They can see the outputs but they can't adjust the inputs without going through this document and Claude Code.
+
+**The heuristic for when to encode a rule vs leave it to a person:**
+
+Don't set a hard boundary in code unless you have a clear, documented failure that the boundary would have prevented. The default should be friction — show the concern, ask for acknowledgement, let a human decide — not a block. Blocks are for things where the failure mode is certain and the cost is high (heat delivery to south-belt, predator and shrimp in the same tank). Everything else should stay as friction or review until the failure pattern is clear enough to justify removing human judgment entirely.
+
+When you find yourself wanting to tighten a rule, ask first: has this actually failed, or does it just feel risky? If it hasn't failed, add a friction message before adding a block. If it has failed, document the failure in the commit message when you make the change — that record is how the next person knows why the rule exists.
+
+---
+
 ## What this system does not decide for you
 
 Every rule in this system can be overridden. The system's job is to make the risk visible — not to own the decision. A friction flag at checkout means "a rep needs to talk to this customer," not "the order is blocked." A review hold means "the livestock team should look at this before we ship," not "this customer can't order this SKU."
