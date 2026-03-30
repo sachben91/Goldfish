@@ -32,7 +32,7 @@ function MoreContext({
   upsellRecommendations,
 }: {
   issuePatterns: CustomerIssuePattern[];
-  recentOrders: Order[];
+  recentOrders: (Order & { catalog: { product_name: string; category: string } | null })[];
   upsellRecommendations: UpsellRecommendation[];
 }) {
   // Server component can't use useState — render as a details/summary element.
