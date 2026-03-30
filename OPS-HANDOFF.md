@@ -2,7 +2,14 @@
 
 This document is for the operations team. It covers every rule in the system that encodes a business decision, where it lives, what it does, and how to change it.
 
-Some changes you can make by editing a config file. Others require editing business logic and redeploying. Both are documented here. For anything requiring a code change, send the relevant section of this document to a developer — the file, the change, and the reason.
+**You do not need a developer to make any of these changes.** All of them can be done with Claude Code — open it in the project directory, describe the change you want using the language in this document (file name, rule name, what to change), and it will make the edit. The only thing you need is access to push to the GitHub repo, which triggers an automatic redeploy on Vercel within ~2 minutes.
+
+Example prompts that work:
+- *"In `lib/upsell.ts`, add a new issue-to-SKU mapping: 'skimmer overflowing' → 'EQUIP-SKM-002', with talking point: 'A correctly sized skimmer won't overflow between visits — worth looking at an upgrade.'"*
+- *"In `lib/ops-queue.ts`, change `MIN_OCCURRENCES_FOR_PATTERN` from 3 to 4."*
+- *"In `lib/compatibility.ts`, in `triggerFishAttestationConcern`, update `customer_message` to say: [new text]."*
+
+The constraint is not technical access — it's knowing which file and rule to point Claude at. That's what this document is for.
 
 ---
 
@@ -234,14 +241,14 @@ Tell a developer all three pieces: zone name (must match what's passed in the AP
 
 ## How to deploy a change
 
-All rule changes require a code update and redeployment. The deployment process:
+1. Open Claude Code in the project directory
+2. Describe the change using the file and rule names in this document
+3. Claude Code makes the edit — review the diff before confirming
+4. Commit and push to GitHub (`main` branch) — Claude Code can do this too
+5. Vercel auto-deploys within ~2 minutes
+6. Test at [goldfish-express.vercel.app/demo](https://goldfish-express.vercel.app/demo) — the demo page runs the compatibility and delivery window engines live without placing a real order
 
-1. Developer edits the relevant file
-2. Commits and pushes to GitHub (`main` branch)
-3. Vercel auto-deploys within ~2 minutes
-4. Test at [goldfish-express.vercel.app/demo](https://goldfish-express.vercel.app/demo) — the demo page lets you run the compatibility and delivery window engines live without placing a real order
-
-For urgent changes (a rule is firing incorrectly and blocking real orders), flag it as urgent — the deploy time is under 5 minutes once the fix is written.
+For urgent changes (a rule is firing incorrectly and blocking real orders), the full cycle from "open Claude Code" to live fix is under 10 minutes.
 
 ---
 
