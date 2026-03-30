@@ -62,6 +62,62 @@ export interface Order {
   rush_requested: boolean;
   fulfillment_type: string | null;
   notes: string | null;
+  replacement_for_order_id?: string | null;  // set when this order is a replacement — triggers outcome recording
+  created_at: string;
+}
+
+// ─── Knowledge capture tables ──────────────────────────────────────────────
+// These tables accumulate the outcome data that feeds deriveRuleInsight,
+// deriveZoneInsight, and deriveDeliveryOverrideInsight in lib/knowledge-capture.ts.
+// Schema migration: supabase/migrations/001_knowledge_capture.sql
+
+export interface DbDeliveryOutcome {
+  id: string;
+  order_id: string;
+  customer_id: string;
+  zone: string;
+  delivery_date: string;
+  was_rush: boolean;
+  temperature_flag: string;
+  delivered_on_time: boolean | null;
+  resulted_in_replacement: boolean;
+  replacement_reason: string | null;
+  recorded_at: string;
+}
+
+export interface DbFrictionAcknowledgement {
+  id: string;
+  order_id: string;
+  customer_id: string;
+  acknowledged_at: string;
+  channel: string;
+  sales_rep_id: string | null;
+  concern_code: string;
+  flagged_sku: string;
+  rule: string;
+  warning_shown: string;
+  customer_confirmation: string;
+  resulted_in_replacement: boolean | null;
+  outcome_recorded_at: string | null;
+  outcome_notes: string | null;
+  created_at: string;
+}
+
+export interface DbDeliveryWindowOverride {
+  id: string;
+  rep_id: string;
+  order_id: string;
+  customer_id: string;
+  zone: string;
+  block_reason: string;
+  delivery_date: string;
+  stop_count_at_override: number;
+  overridden_at: string;
+  checklist_answers: Record<string, boolean | string | null>;
+  rep_note: string | null;
+  resulted_in_replacement: boolean | null;
+  outcome_recorded_at: string | null;
+  outcome_notes: string | null;
   created_at: string;
 }
 
