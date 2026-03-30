@@ -6,6 +6,8 @@ export type ServiceType = "monthly_maintenance" | "biweekly_maintenance" | "emer
 export type VisitStatus = "scheduled" | "completed" | "cancelled";
 export type IssueSeverity = "critical" | "moderate" | "routine";
 export type Category = "fish" | "coral" | "invertebrate" | "equipment" | "service" | "bundle";
+export type ResolutionStatus = "fully_resolved" | "partially_handled" | "could_not_fix";
+export type NextStepOwner = "field" | "office" | "customer";
 
 // ─── Tables ───────────────────────────────────────
 
@@ -78,11 +80,20 @@ export interface ServiceVisit {
   notes: string | null;
   // Filled in by technician after the visit
   logged_at: string | null;
-  logged_issue: string | null;
-  logged_followup_required: boolean | null;
+  logged_issue: string | null;             // legacy — superseded by logged_work_completed
+  logged_followup_required: boolean | null; // legacy — superseded by logged_resolution_status
   logged_upsell_pitched: boolean | null;
   logged_upsell_sku: string | null;
   logged_notes: string | null;
+  // Structured outcome fields — schema migration required to add these columns
+  logged_work_completed: string | null;
+  logged_resolution_status: ResolutionStatus | null;
+  logged_next_step: string | null;
+  logged_next_step_owner: NextStepOwner | null;
+  // Ops flag — creates an OpsQueueItem when set
+  logged_ops_flag_kind: string | null;
+  logged_ops_flag_observation: string | null;
+  logged_ops_flag_sku: string | null;
   created_at: string;
 }
 

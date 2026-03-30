@@ -1,11 +1,22 @@
 // Open Followups — unresolved items from previous visits.
-// Shown in red if any exist, so the technician can't miss them.
-// Each followup can be marked resolved directly from this screen.
+//
+// Follow-ups are not one thing. The original Mark resolved button collapsed
+// three distinct situations into a single action:
+//   failure         — something went wrong, needs fixing today
+//   planned_continuation — multi-stop job where today was always the return trip
+//   pending_office  — waiting on approval, invoice, or scheduling — tech doesn't own it
+//
+// Dana's concern: "field-resolved and fully-resolved are not the same thing."
+// If the tech marks resolved when they've only done their part, office loses the
+// thread and the pattern.
+//
+// The new flow: tech logs what they did on this follow-up in the visit log
+// (under next step + owner). The follow-up stays open until office confirms
+// the full loop is closed. Tech can add a note here if they handled their part today.
 
 "use client";
 
 import { useState } from "react";
-import { createClient } from "@/lib/supabase/client";
 import { isFollowupStale } from "@/lib/schedule";
 import type { OpenFollowup } from "@/types/database";
 
@@ -14,30 +25,33 @@ interface OpenFollowupsSectionProps {
   visitId: string;
 }
 
-export function OpenFollowupsSection({ followups: initialFollowups, visitId }: OpenFollowupsSectionProps) {
-  const [followups, setFollowups] = useState(initialFollowups);
-  const [expanded, setExpanded] = useState(followups.length > 0);  // auto-expand if there are open items
-  const [resolving, setResolving] = useState<string | null>(null);
+const KIND_LABELS: Record<string, { label: string; colour: string }> = {
+  failure:              { label: "Needs fix",    colour: "bg-red-100 text-red-700" },
+  planned_continuation: { label: "Planned",      colour: "bg-blue-50 text-blue-700" },
+  pending_office:       { label: "Office queue", colour: "bg-amber-50 text-amber-700" },
+  customer_behavior:    { label: "Customer",     colour: "bg-slate-100 text-slate-600" },
+};
 
-  const supabase = createClient();
-
-  async function resolveFollowup(followupId: string) {
-    setResolving(followupId);
-    const { error } = await supabase
-      .from("service_visits")
-      .update({
-        followup_resolved: true,
-        followup_resolved_at: new Date().toISOString(),
-      })
-      .eq("id", followupId);
-
-    setResolving(null);
-    if (!error) {
-      setFollowups((prev) => prev.filter((f) => f.id !== followupId));
-    }
+function inferKind(followup: OpenFollowup): string {
+  // Until the database has a followup_kind column, infer from available signals.
+  // This is a best-effort classification — the real fix is capturing kind at log time.
+  const text = [followup.issue_found, followup.notes].join(" ").toLowerCase();
+  if (text.includes("feeding") || text.includes("staff") || text.includes("access")) {
+    return "customer_behavior";
   }
+  if (text.includes("approval") || text.includes("schedule") || text.includes("office") || text.includes("invoice")) {
+    return "pending_office";
+  }
+  if (text.includes("part") || text.includes("return") || text.includes("step 2") || text.includes("next visit")) {
+    return "planned_continuation";
+  }
+  return "failure";
+}
 
-  const hasFollowups = followups.length > 0;
+export function OpenFollowupsSection({ followups: initialFollowups }: OpenFollowupsSectionProps) {
+  const [expanded, setExpanded] = useState(initialFollowups.length > 0);
+
+  const hasFollowups = initialFollowups.length > 0;
 
   return (
     <div className={`bg-white rounded-xl border overflow-hidden ${
@@ -51,7 +65,7 @@ export function OpenFollowupsSection({ followups: initialFollowups, visitId }: O
           Open followups
           {hasFollowups && (
             <span className="ml-2 bg-red-100 text-red-700 text-xs px-1.5 py-0.5 rounded-full font-normal normal-case">
-              {followups.length}
+              {initialFollowups.length}
             </span>
           )}
         </p>
@@ -61,32 +75,59 @@ export function OpenFollowupsSection({ followups: initialFollowups, visitId }: O
       {expanded && (
         <div className="divide-y divide-slate-50">
           {!hasFollowups ? (
-            <p className="px-4 py-4 text-sm text-slate-500">No open followups. Clean slate!</p>
+            <p className="px-4 py-4 text-sm text-slate-500">No open followups. Clean slate.</p>
           ) : (
-            followups.map((followup) => {
-              const stale = isFollowupStale(followup.days_open);
-              return (
-                <div key={followup.id} className="px-4 py-3">
-                  <div className="flex items-start justify-between gap-3">
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm text-slate-800">{followup.issue_found ?? followup.notes ?? "Unspecified issue"}</p>
-                      <p className={`text-xs mt-1 ${stale ? "text-red-500" : "text-slate-400"}`}>
-                        {followup.days_open} days open
-                        {stale && " · overdue for resolution"}
-                        {followup.technician_name && ` · flagged by ${followup.technician_name}`}
-                      </p>
+            <>
+              {initialFollowups.map((followup) => {
+                const stale = isFollowupStale(followup.days_open);
+                const kind = inferKind(followup);
+                const kindMeta = KIND_LABELS[kind] ?? KIND_LABELS.failure;
+
+                return (
+                  <div key={followup.id} className="px-4 py-3 space-y-1.5">
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-2 mb-1">
+                          <span className={`text-xs px-1.5 py-0.5 rounded font-medium ${kindMeta.colour}`}>
+                            {kindMeta.label}
+                          </span>
+                          <span className={`text-xs ${stale ? "text-red-500" : "text-slate-400"}`}>
+                            {followup.days_open}d open{stale ? " · overdue" : ""}
+                          </span>
+                        </div>
+                        <p className="text-sm text-slate-800">
+                          {followup.issue_found ?? followup.notes ?? "Unspecified"}
+                        </p>
+                        {followup.technician_name && (
+                          <p className="text-xs text-slate-400 mt-0.5">Flagged by {followup.technician_name}</p>
+                        )}
+                      </div>
                     </div>
-                    <button
-                      onClick={() => resolveFollowup(followup.id)}
-                      disabled={resolving === followup.id}
-                      className="text-xs text-blue-600 font-medium py-1 px-2 rounded border border-blue-200 shrink-0 disabled:opacity-50"
-                    >
-                      {resolving === followup.id ? "…" : "Mark resolved"}
-                    </button>
+
+                    {/* Context note — no close button.
+                        Follow-ups are closed by office once the full loop is confirmed.
+                        If the tech handled their part today, they log it in the visit log
+                        under "what still needs to happen" with owner = office. */}
+                    {kind === "pending_office" && (
+                      <p className="text-xs text-amber-700 bg-amber-50 rounded px-2 py-1.5">
+                        This is in the office queue — log your visit if you addressed your part today.
+                      </p>
+                    )}
+                    {kind === "planned_continuation" && (
+                      <p className="text-xs text-blue-700 bg-blue-50 rounded px-2 py-1.5">
+                        Planned work — log completion in your visit log when done.
+                      </p>
+                    )}
                   </div>
-                </div>
-              );
-            })
+                );
+              })}
+
+              <div className="px-4 py-3">
+                <p className="text-xs text-slate-400">
+                  Follow-ups are cleared by office once the full loop is closed — invoice confirmed, return visit completed, or customer resolved. Log your part in the visit log.
+                </p>
+              </div>
+            </>
           )}
         </div>
       )}

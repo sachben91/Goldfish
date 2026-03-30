@@ -1,8 +1,14 @@
 // Pre-Visit Brief — the core screen of the app.
 // A technician reads this in the parking lot before walking in.
 //
-// All data is fetched server-side so it's ready on first paint,
-// even on a weak signal. Five queries run in parallel.
+// Structure:
+//   ALWAYS VISIBLE  — access notes, open followups, last visit
+//   MORE CONTEXT    — recurring issues, tank inventory, opportunities for office
+//
+// The always-visible section is what matters before the tech walks in.
+// Everything else is available one tap away but doesn't compete for attention.
+// Luis said he'd ignore inventory and recommendations in the parking lot —
+// so we don't make him scan past them to find what he actually needs.
 
 export const dynamic = "force-dynamic";
 
@@ -16,7 +22,44 @@ import { OpenFollowupsSection } from "@/components/brief/OpenFollowupsSection";
 import { TankInventory } from "@/components/brief/TankInventory";
 import { UpsellRecommendations } from "@/components/brief/UpsellRecommendations";
 import { getUpsellRecommendations } from "@/lib/upsell";
-import type { CatalogItem, Order, CustomerIssuePattern, OpenFollowup } from "@/types/database";
+import type { CatalogItem, Order, CustomerIssuePattern, OpenFollowup, UpsellRecommendation } from "@/types/database";
+
+// MoreContext — collapsible section for everything that is useful inside
+// the visit but not needed in the parking lot.
+function MoreContext({
+  issuePatterns,
+  recentOrders,
+  upsellRecommendations,
+}: {
+  issuePatterns: CustomerIssuePattern[];
+  recentOrders: Order[];
+  upsellRecommendations: UpsellRecommendation[];
+}) {
+  // Server component can't use useState — render as a details/summary element.
+  // Native HTML collapsible: no JS needed, works on weak connections.
+  return (
+    <details className="bg-white rounded-xl border border-slate-200 overflow-hidden">
+      <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none border-b border-slate-100">
+        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+          More context
+          <span className="ml-2 text-slate-300 font-normal normal-case">recurring issues · tank inventory · opportunities</span>
+        </p>
+        <span className="text-slate-300 text-sm">▼</span>
+      </summary>
+      <div className="divide-y divide-slate-50">
+        <div className="p-3">
+          <RecurringIssues patterns={issuePatterns} />
+        </div>
+        <div className="p-3">
+          <TankInventory orders={recentOrders} />
+        </div>
+        <div className="p-3">
+          <UpsellRecommendations recommendations={upsellRecommendations} />
+        </div>
+      </div>
+    </details>
+  );
+}
 
 interface BriefPageProps {
   params: Promise<{ visitId: string }>;
@@ -115,26 +158,28 @@ export default async function BriefPage({ params }: BriefPageProps) {
 
       <div className="px-4 pt-4 space-y-3">
 
-        {/* Section A: Account snapshot — always visible, access notes prominent */}
+        {/* Always visible: access, open followups, last visit.
+            This is what Luis needs before he walks in — no sorting required. */}
+
+        {/* Section A: Account snapshot — access notes always first */}
         <AccountSnapshot customer={scheduledVisit.customer} />
 
-        {/* Section B: Last visit */}
-        <LastVisitSummary lastVisit={lastVisit} />
-
-        {/* Section C: Recurring issues */}
-        <RecurringIssues patterns={(issuePatterns ?? []) as CustomerIssuePattern[]} />
-
-        {/* Section D: Open followups */}
+        {/* Section B: Open followups — shown before last visit so active work is immediate */}
         <OpenFollowupsSection
           followups={(openFollowups ?? []) as OpenFollowup[]}
           visitId={visitId}
         />
 
-        {/* Section E: What's in their tank */}
-        <TankInventory orders={recentOrders ?? []} />
+        {/* Section C: Last visit — quick context on what was found and done */}
+        <LastVisitSummary lastVisit={lastVisit} />
 
-        {/* Section F: Upsell recommendations */}
-        <UpsellRecommendations recommendations={upsellRecommendations} />
+        {/* Everything below is context, not active work. Collapsed by default.
+            Luis said he'd skip inventory and recommendations until inside. */}
+        <MoreContext
+          issuePatterns={(issuePatterns ?? []) as CustomerIssuePattern[]}
+          recentOrders={recentOrders ?? []}
+          upsellRecommendations={upsellRecommendations}
+        />
 
       </div>
 

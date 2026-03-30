@@ -1,6 +1,11 @@
-// Upsell Recommendations — up to 3 products to mention during the visit.
-// Each recommendation shows why it was suggested so the technician
-// can frame the conversation naturally, not like a sales pitch.
+// Opportunities for office — products or services worth quoting for this account.
+// Shown as context inside the visit, not as a to-do in the parking lot.
+//
+// The tech's job is to notice and flag. If they see something that matches
+// one of these during the visit, they can flag it in the visit log and office
+// handles the quote and approval conversation. The tech does not pitch on site
+// for office accounts — Dana noted that anything changing spend needs office
+// to own the approval loop, not the tech in the parking lot.
 
 "use client";
 
@@ -30,9 +35,9 @@ export function UpsellRecommendations({ recommendations }: UpsellRecommendations
         className="w-full flex items-center justify-between px-4 py-3 border-b border-slate-100"
       >
         <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
-          Recommend today
+          Opportunities for office
           {recommendations.length > 0 && (
-            <span className="ml-2 bg-blue-50 text-blue-600 text-xs px-1.5 py-0.5 rounded-full font-normal normal-case border border-blue-100">
+            <span className="ml-2 bg-slate-100 text-slate-500 text-xs px-1.5 py-0.5 rounded-full font-normal normal-case">
               {recommendations.length}
             </span>
           )}
@@ -55,8 +60,12 @@ export function UpsellRecommendations({ recommendations }: UpsellRecommendations
                   </span>
                   <div className="flex-1 min-w-0">
                     <p className="font-medium text-slate-900 text-sm">{rec.product_name}</p>
-                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">{rec.pitch}</p>
-                    <p className="text-xs text-slate-400 mt-1">{rec.sku}</p>
+                    <p className="text-xs text-slate-600 mt-1 leading-relaxed">{rec.reason}</p>
+                    <p className="text-xs text-slate-400 mt-1.5">
+                      {rec.sku}
+                      <span className="ml-2 text-slate-300">·</span>
+                      <span className="ml-2 text-slate-400">If you notice this on site, flag it in your log — office will follow up</span>
+                    </p>
                   </div>
                 </div>
               </div>
