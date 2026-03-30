@@ -21,6 +21,7 @@ import { RecurringIssues } from "@/components/brief/RecurringIssues";
 import { OpenFollowupsSection } from "@/components/brief/OpenFollowupsSection";
 import { TankInventory } from "@/components/brief/TankInventory";
 import { UpsellRecommendations } from "@/components/brief/UpsellRecommendations";
+import { TodaysJob } from "@/components/brief/TodaysJob";
 import { getUpsellRecommendations } from "@/lib/upsell";
 import type { CatalogItem, Order, CustomerIssuePattern, OpenFollowup, UpsellRecommendation } from "@/types/database";
 
@@ -158,19 +159,26 @@ export default async function BriefPage({ params }: BriefPageProps) {
 
       <div className="px-4 pt-4 space-y-3">
 
-        {/* Always visible: access, open followups, last visit.
+        {/* Always visible: today's job, access, open followups, last visit.
             This is what Luis needs before he walks in — no sorting required. */}
 
-        {/* Section A: Account snapshot — access notes always first */}
+        {/* Section A: Today's job — visit type and active work, always first */}
+        <TodaysJob
+          serviceType={scheduledVisit.service_type}
+          openFollowups={(openFollowups ?? []) as OpenFollowup[]}
+          notes={scheduledVisit.notes ?? null}
+        />
+
+        {/* Section B: Account snapshot — access notes */}
         <AccountSnapshot customer={scheduledVisit.customer} />
 
-        {/* Section B: Open followups — shown before last visit so active work is immediate */}
+        {/* Section C: Open followups — detail on each outstanding item */}
         <OpenFollowupsSection
           followups={(openFollowups ?? []) as OpenFollowup[]}
           visitId={visitId}
         />
 
-        {/* Section C: Last visit — quick context on what was found and done */}
+        {/* Section D: Last visit — quick context on what was found and done */}
         <LastVisitSummary lastVisit={lastVisit} />
 
         {/* Everything below is context, not active work. Collapsed by default.
