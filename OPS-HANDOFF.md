@@ -2,14 +2,34 @@
 
 This document is for the operations team. It covers every rule in the system that encodes a business decision, where it lives, what it does, and how to change it.
 
-**You do not need a developer to make any of these changes.** All of them can be done with Claude Code — open it in the project directory, describe the change you want using the language in this document (file name, rule name, what to change), and it will make the edit. The only thing you need is access to push to the GitHub repo, which triggers an automatic redeploy on Vercel within ~2 minutes.
+**You do not need a developer to make any of these changes.** All of them can be done with Claude Code using the built-in `/ops` skill — it loads all the rule context automatically so you don't need to know which file to look in.
 
-Example prompts that work:
-- *"In `lib/upsell.ts`, add a new issue-to-SKU mapping: 'skimmer overflowing' → 'EQUIP-SKM-002', with talking point: 'A correctly sized skimmer won't overflow between visits — worth looking at an upgrade.'"*
-- *"In `lib/ops-queue.ts`, change `MIN_OCCURRENCES_FOR_PATTERN` from 3 to 4."*
-- *"In `lib/compatibility.ts`, in `triggerFishAttestationConcern`, update `customer_message` to say: [new text]."*
+## Setting up Claude Code
 
-The constraint is not technical access — it's knowing which file and rule to point Claude at. That's what this document is for.
+**One-time setup:**
+
+1. Install Claude Code: `npm install -g @anthropic/claude-code` (requires Node.js)
+2. Clone the repo: `git clone https://github.com/sachben91/Goldfish.git`
+3. Open a terminal in the project folder and run: `claude`
+4. Sign in when prompted
+
+The `/ops` skill is already in the repo — no separate installation needed. Once you're in the project folder, it's available.
+
+**Making a change:**
+
+1. Open Claude Code in the project folder: `claude`
+2. Type `/ops` and press Enter — this loads the full rule reference
+3. Describe the change you want in plain English:
+   - *"Add a new upsell mapping: when a tech logs 'skimmer overflowing', recommend SKU EQUIP-SKM-002 with talking point: a correctly sized skimmer won't overflow between visits."*
+   - *"Change the pattern detection threshold from 3 occurrences to 4."*
+   - *"Update the trigger fish customer message to say: [your new text]."*
+4. Review the diff Claude shows you before confirming
+5. Claude runs the type check, commits, and pushes — Vercel redeploys within ~2 minutes
+
+**What you need:**
+- GitHub write access to `sachben91/Goldfish` (request from whoever manages the repo)
+- Node.js installed on your machine ([nodejs.org](https://nodejs.org))
+- An Anthropic account for Claude Code ([claude.ai](https://claude.ai))
 
 ---
 
