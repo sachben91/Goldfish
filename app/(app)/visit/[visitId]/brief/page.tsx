@@ -20,21 +20,17 @@ import { LastVisitSummary } from "@/components/brief/LastVisitSummary";
 import { RecurringIssues } from "@/components/brief/RecurringIssues";
 import { OpenFollowupsSection } from "@/components/brief/OpenFollowupsSection";
 import { TankInventory } from "@/components/brief/TankInventory";
-import { UpsellRecommendations } from "@/components/brief/UpsellRecommendations";
 import { TodaysJob } from "@/components/brief/TodaysJob";
-import { getUpsellRecommendations } from "@/lib/upsell";
-import type { CatalogItem, Order, CustomerIssuePattern, OpenFollowup, UpsellRecommendation } from "@/types/database";
+import type { Order, CustomerIssuePattern, OpenFollowup } from "@/types/database";
 
 // MoreContext — collapsible section for everything that is useful inside
 // the visit but not needed in the parking lot.
 function MoreContext({
   issuePatterns,
   recentOrders,
-  upsellRecommendations,
 }: {
   issuePatterns: CustomerIssuePattern[];
   recentOrders: (Order & { catalog: { product_name: string; category: string } | null })[];
-  upsellRecommendations: UpsellRecommendation[];
 }) {
   // Server component can't use useState — render as a details/summary element.
   // Native HTML collapsible: no JS needed, works on weak connections.
@@ -43,7 +39,7 @@ function MoreContext({
       <summary className="flex items-center justify-between px-4 py-3 cursor-pointer select-none list-none border-b border-slate-100">
         <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
           More context
-          <span className="ml-2 text-slate-300 font-normal normal-case">recurring issues · tank inventory · opportunities</span>
+          <span className="ml-2 text-slate-300 font-normal normal-case">recurring issues · tank inventory</span>
         </p>
         <span className="text-slate-300 text-sm">▼</span>
       </summary>
@@ -53,9 +49,6 @@ function MoreContext({
         </div>
         <div className="p-3">
           <TankInventory orders={recentOrders} />
-        </div>
-        <div className="p-3">
-          <UpsellRecommendations recommendations={upsellRecommendations} />
         </div>
       </div>
     </details>
@@ -90,7 +83,6 @@ export default async function BriefPage({ params }: BriefPageProps) {
     { data: issuePatterns },
     { data: openFollowups },
     { data: recentOrders },
-    { data: catalogItems },
   ] = await Promise.all([
     // Last 5 visits for this account, most recent first (past visits only)
     supabase
@@ -124,17 +116,7 @@ export default async function BriefPage({ params }: BriefPageProps) {
       .gte("order_date", new Date(Date.now() - 365 * 24 * 60 * 60 * 1000).toISOString().split("T")[0])
       .order("order_date", { ascending: false })
       .limit(20),
-
-    // Full catalog for the upsell engine
-    supabase.from("catalog").select("*"),
   ]);
-
-  const upsellRecommendations = getUpsellRecommendations({
-    customer: scheduledVisit.customer,
-    recentOrders: (recentOrders ?? []) as Order[],
-    catalogItems: (catalogItems ?? []) as CatalogItem[],
-    issuePatterns: (issuePatterns ?? []) as CustomerIssuePattern[],
-  });
 
   const lastVisit = lastVisits?.[0] ?? null;
 
@@ -186,7 +168,6 @@ export default async function BriefPage({ params }: BriefPageProps) {
         <MoreContext
           issuePatterns={(issuePatterns ?? []) as CustomerIssuePattern[]}
           recentOrders={recentOrders ?? []}
-          upsellRecommendations={upsellRecommendations}
         />
 
       </div>
