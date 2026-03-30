@@ -14,13 +14,19 @@ export function RunInsightsButton() {
     try {
       const res = await fetch("/api/insights/run", { method: "POST" });
       if (!res.ok) {
-        const body = await res.json();
-        setError(body.error ?? "Run failed");
+        // Try JSON first, fall back to raw text so we always see what went wrong
+        const text = await res.text();
+        try {
+          const body = JSON.parse(text);
+          setError(`${res.status}: ${body.error ?? "Run failed"}`);
+        } catch {
+          setError(`${res.status}: ${text.slice(0, 120)}`);
+        }
       } else {
         router.refresh();
       }
-    } catch {
-      setError("Network error");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Fetch failed");
     } finally {
       setRunning(false);
     }
