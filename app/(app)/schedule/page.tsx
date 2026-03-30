@@ -9,6 +9,7 @@ import { VisitCard } from "@/components/schedule/VisitCard";
 import { SERVICE_TYPE_LABELS, isOverdue } from "@/lib/schedule";
 import type { ScheduledVisit } from "@/types/database";
 import { redirect } from "next/navigation";
+import Link from "next/link";
 
 export default async function SchedulePage() {
   const supabase = await createClient();
@@ -117,6 +118,20 @@ export default async function SchedulePage() {
           </div>
         </section>
       )}
+
+      {/* Office tools */}
+      <section className="mt-10 border-t border-slate-100 pt-6">
+        <h2 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Office</h2>
+        <Link href="/insights">
+          <div className="bg-white border border-slate-200 rounded-xl px-4 py-3 flex items-center justify-between">
+            <div>
+              <p className="text-sm font-medium text-slate-800">Account insights</p>
+              <p className="text-xs text-slate-500 mt-0.5">Recurring patterns across all accounts</p>
+            </div>
+            <span className="text-slate-300">→</span>
+          </div>
+        </Link>
+      </section>
 
     </div>
   );
